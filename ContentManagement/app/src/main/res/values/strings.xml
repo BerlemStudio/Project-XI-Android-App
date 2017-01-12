@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">ContentManagement</string>
+    <string name="app_name">SpaceTour:Project XI</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+    <string name="button_quick">QuickStart</string>
+    <string name="button_story">SetStory</string>
+    <string name="button_one_content">OneContent</string>
+    <string name="button_coming_soon">coming_soon</string>
 </resources>
