@@ -6,4 +6,8 @@
     <string name="button_story">SetStory</string>
     <string name="button_one_content">OneContent</string>
     <string name="button_coming_soon">coming_soon</string>
+
+    <!--Menu Nav string-->
+    <string name="action_swap">Swap</string>
+    <string name="action_start">Start</string>
 </resources>
