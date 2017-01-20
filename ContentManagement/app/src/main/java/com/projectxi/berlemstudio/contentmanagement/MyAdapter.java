@@ -5,30 +5,34 @@ import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by patawat on 1/11/2017 AD.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private String[] mDataset;
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements Adapter {
+//    private String[] mDataset;
+    private ArrayList<story> mDataset;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+
         public ImageView ImageView;
-        public TextView Info;
-        public TextView mTextView;
+        public TextView name;
+        public TextView des;
+        public TextView img_path;
+
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView)v.findViewById(R.id.textView);
+            name = (TextView)v.findViewById(R.id.name);
+            des = (TextView)v.findViewById(R.id.des);
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(String[] myDataset) {
-        mDataset = myDataset;
+    public MyAdapter(ArrayList s) {
+        mDataset = s;
     }
 
     // Create new views (invoked by the layout manager)
@@ -44,17 +48,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position]);
+        holder.name.setText(mDataset.get(position).getName());
+        holder.des.setText(mDataset.get(position).getDes());
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
+    }
+
+    @Override
+    public void onItemMove(int FromPosition, int ToPosition){
+        Collections.swap(mDataset, FromPosition, ToPosition);
+        notifyItemMoved(FromPosition, ToPosition);
     }
 }
