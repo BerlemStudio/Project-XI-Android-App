@@ -1,4 +1,5 @@
 package com.projectxi.berlemstudio.contentmanagement;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,10 +23,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         public ImageView ImageView;
         public TextView name;
         public TextView des;
-        public TextView img_path;
 
         public ViewHolder(View v) {
             super(v);
+            ImageView = (ImageView)v.findViewById(R.id.image);
             name = (TextView)v.findViewById(R.id.name);
             des = (TextView)v.findViewById(R.id.des);
         }
@@ -50,6 +51,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+//        Drawable drawable = R.drawable.saturn;
+//        holder.ImageView.setImageDrawable(drawable);
         holder.name.setText(mDataset.get(position).getName());
         holder.des.setText(mDataset.get(position).getDes());
     }
@@ -63,5 +66,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     public void onItemMove(int FromPosition, int ToPosition){
         Collections.swap(mDataset, FromPosition, ToPosition);
         notifyItemMoved(FromPosition, ToPosition);
+    }
+
+    public ArrayList getList(){
+        return this.mDataset;
+    }
+
+    public String getString(){
+        return this.mDataset.get(1).getName();
     }
 }

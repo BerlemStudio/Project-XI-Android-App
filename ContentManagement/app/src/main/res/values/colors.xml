@@ -8,4 +8,16 @@
     <color name="title">#222222</color>
 
     <color name="grey50">#212121</color>
+
+
+    // Dark theme
+    <color name="statusBar">#000000</color>
+    <color name="Appbar">#212121</color>
+    <color name="Background">#303030</color>
+    <color name="CardDialog">#424242</color>
+
+    <color name="primaryText">#ffffff</color>
+    <color name="secondaryText">#B3ffffff</color>
+    <color name="hint">#80ffffff</color>
+
 </resources>

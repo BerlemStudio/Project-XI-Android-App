@@ -1,6 +1,10 @@
 package com.projectxi.berlemstudio.contentmanagement;
 
-import android.content.Context;
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,17 +23,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import com.projectxi.berlemstudio.contentmanagement.story;
 
 public class ContentList extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.verifyStoragePermissions();
+
         setContentView(R.layout.activity_content_list);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
@@ -43,7 +50,6 @@ public class ContentList extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
 
         ArrayList myDataset = null;
         try {
@@ -67,12 +73,26 @@ public class ContentList extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.swap:{
                 this.mAdapter.onItemMove(0, 1);
-//                onBackPressed();
                 return true;
             }
             case R.id.start:{
-                System.out.print("start");
-                return true;
+                writeJSONfile();
+                startDialog dialog = new startDialog();
+                ArrayList<story> list = mAdapter.getList();
+                String[] arratOrder = new String[list.size()];
+                for (int i = 0; i < list.size() ; i++){
+                    arratOrder[i] = list.get(i).getName();
+                }
+                try {
+                    JSONArray json = new JSONArray(arratOrder);
+                    dialog.setDialog(json.toString(), this);
+//                    dialog.setText(json.toString());
+                    dialog.show(getFragmentManager(),"test");
+                    return true;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return false;
+                }
             }
             default: return super.onOptionsItemSelected(item);
         }
@@ -111,7 +131,17 @@ public class ContentList extends AppCompatActivity {
         return list;
     }
 
-    public void createActionListener(){
+    public void writeJSONfile(){
+        JSONArray array = new JSONArray(this.mAdapter.getList());
+        String result = array.toString();
 
+    }
+
+    public void verifyStoragePermissions(){
+        int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if(permistion!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
+        }
     }
 }
