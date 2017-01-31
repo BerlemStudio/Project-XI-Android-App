@@ -19,7 +19,12 @@ public class MainActivity extends AppCompatActivity {
 //        setSupportActionBar(myToolbar);
     }
 
-    public void OneStory(View view){
+    public void onClickQuickStart(View view){
+        Intent intent = new Intent(this, activity_story_contents_list.class);
+        startActivity(intent);
+    }
+
+    public void onClickNormalStart(View view){
         Intent intent = new Intent(this, ContentList.class);
         startActivity(intent);
     }

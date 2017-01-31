@@ -12,12 +12,22 @@
 
     // Dark theme
     <color name="statusBar">#000000</color>
-    <color name="Appbar">#212121</color>
-    <color name="Background">#303030</color>
+    <color name="Appbar">#1d1d20</color>
+    <color name="Background">#2a2a2a</color>
     <color name="CardDialog">#424242</color>
 
     <color name="primaryText">#ffffff</color>
     <color name="secondaryText">#B3ffffff</color>
     <color name="hint">#80ffffff</color>
 
+    <!--<color name="statusBar">#000000</color>-->
+    <!--<color name="Appbar">#060b13</color>-->
+    <!--<color name="Background">#1f2123</color>-->
+    <!--<color name="CardDialog">#2a3a4b</color>-->
+
+    <color name="primary">#242a2f</color>
+    <color name="secondary">#1aba5d</color>
+    <color name="third">#0088ff</color>
+    <color name="fourth">#879eb1</color>
+    <color name="fifth">#f4ae01</color>
 </resources>

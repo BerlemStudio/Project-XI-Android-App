@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="4"
-    android:background="@color/Background"
+    android:background="@drawable/mainbg"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -19,57 +19,47 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/mainbg" />
+            android:scaleType="centerInside"
+            android:layout_margin="30dp"
+            android:src="@drawable/spacetour" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:orientation="vertical"
-        android:weightSum="3" >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+        android:weightSum="3"
+
+        android:layout_margin="50dp">
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/button_one_content"
-                android:id="@+id/button"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:text="@string/button_quick"
-                android:onClick="OneStory"
-            />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+                android:onClick="onClickQuickStart"
+                android:background="@drawable/menubutton"
+                android:textColor="@color/primaryText"
+                android:id="@+id/button"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+
+                />
+
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/button_coming_soon"
+                android:layout_height="50dp"
+                android:text="@string/button_normal"
+                android:onClick="onClickNormalStart"
+                android:textColor="@color/primaryText"
+                android:background="@drawable/menubutton"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/button_coming_soon"
-                />
-        </LinearLayout>
+
     </LinearLayout>
 
 

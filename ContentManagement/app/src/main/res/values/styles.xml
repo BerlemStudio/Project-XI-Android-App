@@ -9,4 +9,12 @@
         <item name="android:titleTextStyle">@color/primaryText</item>
     </style>
 
+    <!-- ToolBar -->
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/primaryText</item>
+        <item name="android:textColorSecondary">@color/secondaryText</item>
+        <item name="actionMenuTextColor">@color/primaryText</item>
+        <!--<item name="actionOverflowButtonStyle">@style/ActionButtonOverflowStyle</item>-->
+        <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
+    </style>
 </resources>

@@ -1,4 +1,5 @@
 package com.projectxi.berlemstudio.contentmanagement;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -51,8 +52,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        Drawable drawable = R.drawable.saturn;
-//        holder.ImageView.setImageDrawable(drawable);
+        Context context = holder.ImageView.getContext();
+        int id = context.getResources().getIdentifier(mDataset.get(position).getImg_path(),"drawable", context.getPackageName());
+        holder.ImageView.setImageResource(id);
+
         holder.name.setText(mDataset.get(position).getName());
         holder.des.setText(mDataset.get(position).getDes());
     }
