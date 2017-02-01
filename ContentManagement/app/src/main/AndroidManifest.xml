@@ -22,8 +22,9 @@
         </activity>
         <activity
             android:name=".ContentList"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".activity_story_contents_list"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity_story_contents_list" />
+        <activity android:name=".OrderingActivity"></activity>
     </application>
 
 </manifest>

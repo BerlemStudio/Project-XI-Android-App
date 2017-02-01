@@ -1,6 +1,7 @@
 package com.projectxi.berlemstudio.contentmanagement;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -59,7 +60,6 @@ public class ContentList extends AppCompatActivity {
         }
 
         this.mAdapter = new content_list_adapter( myDataset );
-//        this.mAdapter = new MyAdapter( myDataset );
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -72,8 +72,10 @@ public class ContentList extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
-            case R.id.swap:{
-                this.mAdapter.onItemMove(0, 1);
+            case R.id.orderButton:{
+                Intent intent = new Intent(this, OrderingActivity.class);
+                startActivity(intent);
+//                this.mAdapter.onItemMove(0, 1);
                 return true;
             }
             case R.id.start:{

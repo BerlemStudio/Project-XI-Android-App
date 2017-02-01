@@ -9,6 +9,7 @@
     <!--Menu Nav string-->
     <string name="action_swap">Swap</string>
     <string name="action_start">Start</string>
+    <string name="action_order">Order</string>
 
     <!--label String-->
     <string name="primarySchool">ประถม</string>
