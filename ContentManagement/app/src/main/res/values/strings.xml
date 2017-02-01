@@ -16,4 +16,7 @@
     <!--main menu button-->
     <string name="button_quick">Quick Start</string>
     <string name="button_normal">Normal Start</string>
+
+    <!--view card in content list-->
+    <string name="button_select">Select</string>
 </resources>

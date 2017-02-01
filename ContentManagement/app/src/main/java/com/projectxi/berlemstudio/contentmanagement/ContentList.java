@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class ContentList extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private MyAdapter mAdapter;
+    private content_list_adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
 
@@ -34,6 +34,7 @@ public class ContentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.setbutton();
         this.verifyStoragePermissions();
 
         setContentView(R.layout.activity_content_list);
@@ -57,7 +58,8 @@ public class ContentList extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        this.mAdapter = new MyAdapter( myDataset );
+        this.mAdapter = new content_list_adapter( myDataset );
+//        this.mAdapter = new MyAdapter( myDataset );
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -77,7 +79,7 @@ public class ContentList extends AppCompatActivity {
             case R.id.start:{
                 writeJSONfile();
                 startDialog dialog = new startDialog();
-                ArrayList<story> list = mAdapter.getList();
+                ArrayList<story> list = mAdapter.getSelectedList();
                 String[] arratOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
                     arratOrder[i] = list.get(i).getName();
@@ -141,5 +143,9 @@ public class ContentList extends AppCompatActivity {
         if(permistion!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
+    }
+
+    public void setbutton(){
+
     }
 }
