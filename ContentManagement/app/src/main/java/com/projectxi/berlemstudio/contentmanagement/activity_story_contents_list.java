@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class activity_story_contents_list extends AppCompatActivity {
 
@@ -74,16 +75,16 @@ public class activity_story_contents_list extends AppCompatActivity {
                 return true;
             }
             case R.id.start:{
-                writeJSONfile();
                 startDialog dialog = new startDialog();
                 ArrayList<story> list = mAdapter.getList();
-                String[] arratOrder = new String[list.size()];
+                String[] arrayOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
-                    arratOrder[i] = list.get(i).getName();
+                    arrayOrder[i] = list.get(i).getName();
                 }
                 try {
-                    JSONArray json = new JSONArray(arratOrder);
-                    dialog.setDialog(json.toString(), this);
+                    JSONObject orderArray = new JSONObject();
+                    orderArray.put("orderArray", Arrays.toString(arrayOrder));
+                    dialog.setDialog(orderArray.toString(), this);
                     dialog.show(getFragmentManager(),"test");
                     return true;
                 } catch (JSONException e) {
@@ -126,12 +127,6 @@ public class activity_story_contents_list extends AppCompatActivity {
         }
 
         return list;
-    }
-
-    public void writeJSONfile(){
-        JSONArray array = new JSONArray(this.mAdapter.getList());
-        String result = array.toString();
-
     }
 
     public void verifyStoragePermissions(){

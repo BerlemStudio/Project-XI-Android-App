@@ -31,15 +31,11 @@ public class startDialog extends DialogFragment {
         this.text = text;
         this.activity = activity;
     }
-    public void setText(String text){
-        this.text = toJsonString(text);
-    }
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(this.text).setPositiveButton("yes",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 writeFile();
-
                 Intent intent = new Intent();
                 intent.setClassName("com.BerlemStudio.ProjectXI","com.unity3d.player.UnityPlayerActivity");
                 startActivity(intent);
@@ -51,12 +47,8 @@ public class startDialog extends DialogFragment {
 
         return builder.create();
     }
-    public String toJsonString(String json){
-        json = "{"+json+"}";
-        return json;
-    }
+
     public void writeFile(){
-        String filename = "storyOrder.json";
         this.verifyStoragePermissions();
         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
 

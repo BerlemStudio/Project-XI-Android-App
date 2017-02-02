@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ContentList extends AppCompatActivity {
@@ -35,7 +36,6 @@ public class ContentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setbutton();
         this.verifyStoragePermissions();
 
         setContentView(R.layout.activity_content_list);
@@ -74,21 +74,21 @@ public class ContentList extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.orderButton:{
                 Intent intent = new Intent(this, OrderingActivity.class);
+                intent.putExtra("selectedList", mAdapter.getSelectedList());
                 startActivity(intent);
-//                this.mAdapter.onItemMove(0, 1);
                 return true;
             }
             case R.id.start:{
-                writeJSONfile();
                 startDialog dialog = new startDialog();
                 ArrayList<story> list = mAdapter.getSelectedList();
-                String[] arratOrder = new String[list.size()];
+                String[] arrayOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
-                    arratOrder[i] = list.get(i).getName();
+                    arrayOrder[i] = list.get(i).getName();
                 }
                 try {
-                    JSONArray json = new JSONArray(arratOrder);
-                    dialog.setDialog(json.toString(), this);
+                    JSONObject orderArray = new JSONObject();
+                    orderArray.put("orderArray", Arrays.toString(arrayOrder));
+                    dialog.setDialog(orderArray.toString(), this);
                     dialog.show(getFragmentManager(),"test");
                     return true;
                 } catch (JSONException e) {
@@ -133,21 +133,11 @@ public class ContentList extends AppCompatActivity {
         return list;
     }
 
-    public void writeJSONfile(){
-        JSONArray array = new JSONArray(this.mAdapter.getList());
-        String result = array.toString();
-
-    }
-
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         if(permistion!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
-    }
-
-    public void setbutton(){
-
     }
 }
