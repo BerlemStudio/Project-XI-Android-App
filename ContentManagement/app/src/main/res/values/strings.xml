@@ -19,5 +19,6 @@
     <string name="button_normal">Normal Start</string>
 
     <!--view card in content list-->
-    <string name="button_select">Select</string>
+    <string name="button_select">เลือก</string>
+    <string name="button_selected">ยกเลิก</string>
 </resources>

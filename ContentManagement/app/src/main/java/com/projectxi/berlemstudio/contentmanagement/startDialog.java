@@ -52,7 +52,10 @@ public class startDialog extends DialogFragment {
         this.verifyStoragePermissions();
         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        File dir = new File(root, "spaceTour");
+//        File dir = new File(root, "spaceTour");
+//        File dir = new File(root, "spaceTour/data");
+        File dir = new File(root, "Android/data/com.BerlemStudio.ProjectX/files/ContentManagement");
+//        File path = getFile
         if(!dir.exists()){
             dir.mkdir();
         }
@@ -69,6 +72,7 @@ public class startDialog extends DialogFragment {
             }
         }
     }
+
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this.activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
@@ -76,5 +80,4 @@ public class startDialog extends DialogFragment {
             ActivityCompat.requestPermissions(this.activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
     }
-
 }

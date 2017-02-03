@@ -1,10 +1,12 @@
 package com.projectxi.berlemstudio.contentmanagement;
 
+import java.io.Serializable;
+
 /**
  * Created by patawat on 1/18/2017 AD.
  */
 
-public class story {
+public class story implements Serializable{
     private String name;
     private String des;
     private String img_path;

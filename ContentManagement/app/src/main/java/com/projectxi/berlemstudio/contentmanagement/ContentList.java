@@ -36,6 +36,7 @@ public class ContentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.setbutton();
         this.verifyStoragePermissions();
 
         setContentView(R.layout.activity_content_list);
@@ -139,5 +140,9 @@ public class ContentList extends AppCompatActivity {
         if(permistion!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
+    }
+
+    public void setbutton(){
+
     }
 }

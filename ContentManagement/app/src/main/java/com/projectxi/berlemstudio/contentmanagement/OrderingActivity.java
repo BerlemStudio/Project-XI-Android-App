@@ -1,6 +1,7 @@
 package com.projectxi.berlemstudio.contentmanagement;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,11 +17,8 @@ import android.view.MenuItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+
 
 public class OrderingActivity extends AppCompatActivity {
 
@@ -32,6 +30,7 @@ public class OrderingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         this.verifyStoragePermissions();
 
@@ -48,35 +47,43 @@ public class OrderingActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+//        ActionBar ab = getActionBar();
 
-        ArrayList myDataset = null;
+        Intent intent = getIntent();
+        ArrayList<story> myDataset;
         try {
-            myDataset = getJSON();
-        } catch (JSONException e) {
-            e.printStackTrace();
+            myDataset = (ArrayList<story>) intent.getSerializableExtra("selectedList");
+            this.mAdapter = new MyAdapter( myDataset );
+            mRecyclerView.setAdapter(mAdapter);
+        }catch (Exception e){
+            System.out.print(e.toString());
         }
 
-        this.mAdapter = new MyAdapter( myDataset );
-        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     // Create Menu
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.story_content_bar, menu);
+        inflater.inflate(R.menu.orderingbar, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
-            case R.id.swap:{
-                this.mAdapter.onItemMove(0, 1);
+//            case R.id.swap:{
+//                this.mAdapter.onItemMove(0, 1);
+//                return true;
+//            }
+            case android.R.id.home:{
+                this.finish();
                 return true;
             }
             case R.id.start:{
-                writeJSONfile();
                 startDialog dialog = new startDialog();
                 ArrayList<story> list = mAdapter.getList();
+
                 String[] arratOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
                     arratOrder[i] = list.get(i).getName();
@@ -95,44 +102,6 @@ public class OrderingActivity extends AppCompatActivity {
         }
     }
 
-    public String loadJSONFromAsset(){
-        String json = null;
-        try {
-            InputStream is = getAssets().open("content.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-    public ArrayList getJSON() throws JSONException {
-        JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
-        JSONArray array = jsonObj.getJSONArray("content");
-        ArrayList<story> list = new ArrayList<>();
-
-        for (int count = 0 ; count < array.length() ; count++){
-            JSONObject obj = array.getJSONObject(count);
-            String name = obj.getString("name");
-            String des = obj.getString("des");
-            String Img_path = obj.getString("img_path");
-            story test= new story(name, des, Img_path);
-            list.add(test);
-        }
-
-        return list;
-    }
-
-    public void writeJSONfile(){
-        JSONArray array = new JSONArray(this.mAdapter.getList());
-        String result = array.toString();
-
-    }
 
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);

@@ -56,7 +56,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
 
     @Override
     public void onBindViewHolder(final content_list_adapter.ViewHolder holder, final int position) {
-        Context context = holder.ImageView.getContext();
+        final Context context = holder.ImageView.getContext();
         int id = context.getResources().getIdentifier(mDataset.get(position).getImg_path(),"drawable", context.getPackageName());
         holder.ImageView.setImageResource(id);
         holder.name.setText(mDataset.get(position).getName());
@@ -65,11 +65,18 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
             public void onClick(View v) {
                 if (!holder.selection){
                     holder.selection = true;
-                    holder.select.setText("selected");
+                    String button = context.getString(R.string.button_selected);
+                    holder.select.setText(button);
+                    int color = context.getResources().getColor(R.color.fifth);
+
+                    holder.select.setBackgroundColor(color);
                     selectedList.add(mDataset.get(position));
                 }else {
                     holder.selection = false;
-                    holder.select.setText("Click");
+                    String button = context.getString(R.string.button_select);
+                    int color = context.getResources().getColor(R.color.secondary);
+                    holder.select.setBackgroundColor(color);
+                    holder.select.setText(button);
                     selectedList.remove(mDataset.get(position));
                 }
             }
