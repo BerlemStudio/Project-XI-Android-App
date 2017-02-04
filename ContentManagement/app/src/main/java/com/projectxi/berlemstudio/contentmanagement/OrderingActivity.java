@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class OrderingActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private MyAdapter mAdapter;
+    private ordering_adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
 
@@ -34,27 +34,26 @@ public class OrderingActivity extends AppCompatActivity {
 
         this.verifyStoragePermissions();
 
+//        set Recycle view
         setContentView(R.layout.activity_content_list);
-
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
         mRecyclerView.setHasFixedSize(true);
-
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+//        set tool bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+//        set action bar
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-//        ActionBar ab = getActionBar();
 
         Intent intent = getIntent();
         ArrayList<story> myDataset;
         try {
             myDataset = (ArrayList<story>) intent.getSerializableExtra("selectedList");
-            this.mAdapter = new MyAdapter( myDataset );
+            this.mAdapter = new ordering_adapter( myDataset );
             mRecyclerView.setAdapter(mAdapter);
         }catch (Exception e){
             System.out.print(e.toString());

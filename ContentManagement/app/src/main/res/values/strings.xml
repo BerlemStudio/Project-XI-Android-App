@@ -10,6 +10,7 @@
     <string name="action_swap">Swap</string>
     <string name="action_start">Start</string>
     <string name="action_order">Order</string>
+    <string name="action_next">Next</string>
 
     <!--label String-->
     <string name="primarySchool">ประถม</string>
@@ -21,4 +22,5 @@
     <!--view card in content list-->
     <string name="button_select">เลือก</string>
     <string name="button_selected">ยกเลิก</string>
+
 </resources>

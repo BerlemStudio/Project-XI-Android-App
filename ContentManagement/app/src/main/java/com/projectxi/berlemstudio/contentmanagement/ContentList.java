@@ -36,7 +36,6 @@ public class ContentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setbutton();
         this.verifyStoragePermissions();
 
         setContentView(R.layout.activity_content_list);
@@ -52,6 +51,7 @@ public class ContentList extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         ArrayList myDataset = null;
         try {
@@ -73,29 +73,37 @@ public class ContentList extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
-            case R.id.orderButton:{
+//            case R.id.orderButton:{
+//                Intent intent = new Intent(this, OrderingActivity.class);
+//                intent.putExtra("selectedList", mAdapter.getSelectedList());
+//                startActivity(intent);
+//                return true;
+//            }
+            case android.R.id.home:{
+                this.finish();
+                return true;
+            }
+            case R.id.next:{
                 Intent intent = new Intent(this, OrderingActivity.class);
                 intent.putExtra("selectedList", mAdapter.getSelectedList());
                 startActivity(intent);
                 return true;
-            }
-            case R.id.start:{
-                startDialog dialog = new startDialog();
-                ArrayList<story> list = mAdapter.getSelectedList();
-                String[] arrayOrder = new String[list.size()];
-                for (int i = 0; i < list.size() ; i++){
-                    arrayOrder[i] = list.get(i).getName();
-                }
-                try {
-                    JSONObject orderArray = new JSONObject();
-                    orderArray.put("orderArray", Arrays.toString(arrayOrder));
-                    dialog.setDialog(orderArray.toString(), this);
-                    dialog.show(getFragmentManager(),"test");
-                    return true;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return false;
-                }
+//                startDialog dialog = new startDialog();
+//                ArrayList<story> list = mAdapter.getSelectedList();
+//                String[] arrayOrder = new String[list.size()];
+//                for (int i = 0; i < list.size() ; i++){
+//                    arrayOrder[i] = list.get(i).getName();
+//                }
+//                try {
+//                    JSONObject orderArray = new JSONObject();
+//                    orderArray.put("orderArray", Arrays.toString(arrayOrder));
+//                    dialog.setDialog(orderArray.toString(), this);
+//                    dialog.show(getFragmentManager(),"test");
+//                    return true;
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    return false;
+//                }
             }
             default: return super.onOptionsItemSelected(item);
         }
@@ -142,7 +150,4 @@ public class ContentList extends AppCompatActivity {
         }
     }
 
-    public void setbutton(){
-
-    }
 }

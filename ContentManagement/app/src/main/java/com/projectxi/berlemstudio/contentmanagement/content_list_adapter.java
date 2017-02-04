@@ -69,13 +69,13 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
                     holder.select.setText(button);
                     int color = context.getResources().getColor(R.color.fifth);
 
-                    holder.select.setBackgroundColor(color);
+//                    holder.select.setBackgroundColor(color);
                     selectedList.add(mDataset.get(position));
                 }else {
                     holder.selection = false;
                     String button = context.getString(R.string.button_select);
                     int color = context.getResources().getColor(R.color.secondary);
-                    holder.select.setBackgroundColor(color);
+//                    holder.select.setBackgroundColor(color);
                     holder.select.setText(button);
                     selectedList.remove(mDataset.get(position));
                 }

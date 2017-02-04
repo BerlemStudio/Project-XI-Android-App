@@ -49,6 +49,7 @@ public class activity_story_contents_list extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         ArrayList myDataset = null;
         try {
@@ -72,6 +73,10 @@ public class activity_story_contents_list extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.swap:{
                 this.mAdapter.onItemMove(0, 1);
+                return true;
+            }
+            case android.R.id.home:{
+                this.finish();
                 return true;
             }
             case R.id.start:{
