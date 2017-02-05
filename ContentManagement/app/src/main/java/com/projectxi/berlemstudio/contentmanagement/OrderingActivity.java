@@ -48,6 +48,7 @@ public class OrderingActivity extends AppCompatActivity {
 //        set action bar
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle("ลำดับเนื้อเรื่อง");
 
         Intent intent = getIntent();
         ArrayList<story> myDataset;
@@ -72,7 +73,8 @@ public class OrderingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.swap:{
-                this.mAdapter.onItemMove(0, 1);
+                if (this.mAdapter.getItemCount() != 1)
+                    this.mAdapter.onItemMove(0, 1);
                 return true;
             }
             case android.R.id.home:{

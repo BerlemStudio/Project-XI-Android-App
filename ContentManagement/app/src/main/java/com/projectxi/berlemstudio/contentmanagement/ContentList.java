@@ -52,6 +52,7 @@ public class ContentList extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle("เนื้อเรื่อง");
 
         ArrayList myDataset = null;
         try {
@@ -84,9 +85,14 @@ public class ContentList extends AppCompatActivity {
                 return true;
             }
             case R.id.next:{
-                Intent intent = new Intent(this, OrderingActivity.class);
-                intent.putExtra("selectedList", mAdapter.getSelectedList());
-                startActivity(intent);
+                if(mAdapter.getSelectedList().size()==0){
+                    nextDialog dialog = new nextDialog();
+                    dialog.show(getFragmentManager(), "WarningSelected");
+                }else{
+                    Intent intent = new Intent(this, OrderingActivity.class);
+                    intent.putExtra("selectedList", mAdapter.getSelectedList());
+                    startActivity(intent);
+                }
                 return true;
 //                startDialog dialog = new startDialog();
 //                ArrayList<story> list = mAdapter.getSelectedList();

@@ -33,14 +33,14 @@ public class startDialog extends DialogFragment {
     }
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(this.text).setPositiveButton("yes",new DialogInterface.OnClickListener() {
+        builder.setMessage(this.text).setPositiveButton("ใช่",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 writeFile();
                 Intent intent = new Intent();
                 intent.setClassName("com.BerlemStudio.ProjectXI","com.unity3d.player.UnityPlayerActivity");
                 startActivity(intent);
             }
-        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             }
         });

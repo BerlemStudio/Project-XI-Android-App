@@ -7,10 +7,10 @@
     <string name="button_coming_soon">coming_soon</string>
 
     <!--Menu Nav string-->
-    <string name="action_swap">Swap</string>
-    <string name="action_start">Start</string>
-    <string name="action_order">Order</string>
-    <string name="action_next">Next</string>
+    <string name="action_swap">สลับ</string>
+    <string name="action_start">เรื่ม</string>
+    <string name="action_order">จัดลำดับ</string>
+    <string name="action_next">ต่อไป</string>
 
     <!--label String-->
     <string name="primarySchool">ประถม</string>

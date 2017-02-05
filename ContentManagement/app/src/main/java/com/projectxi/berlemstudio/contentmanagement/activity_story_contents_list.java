@@ -50,6 +50,7 @@ public class activity_story_contents_list extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle("เนื้อเรื่อง");
 
         ArrayList myDataset = null;
         try {
