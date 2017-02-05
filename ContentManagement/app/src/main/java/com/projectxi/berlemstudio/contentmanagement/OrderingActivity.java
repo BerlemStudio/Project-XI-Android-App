@@ -71,10 +71,10 @@ public class OrderingActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
-//            case R.id.swap:{
-//                this.mAdapter.onItemMove(0, 1);
-//                return true;
-//            }
+            case R.id.swap:{
+                this.mAdapter.onItemMove(0, 1);
+                return true;
+            }
             case android.R.id.home:{
                 this.finish();
                 return true;
@@ -89,8 +89,9 @@ public class OrderingActivity extends AppCompatActivity {
                 }
                 try {
                     JSONArray json = new JSONArray(arratOrder);
-                    dialog.setDialog(json.toString(), this);
-                    dialog.show(getFragmentManager(),"test");
+                    dialog.setDialog("คุณต้องการที่จะเริ่มหรือไม่", this);
+//                    dialog.setDialog(json.toString(), this);
+                    dialog.show(getFragmentManager(),"StartWarning");
                     return true;
                 } catch (JSONException e) {
                     e.printStackTrace();

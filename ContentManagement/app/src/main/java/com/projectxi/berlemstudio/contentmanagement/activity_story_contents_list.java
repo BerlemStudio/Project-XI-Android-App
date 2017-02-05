@@ -89,7 +89,8 @@ public class activity_story_contents_list extends AppCompatActivity {
                 try {
                     JSONObject orderArray = new JSONObject();
                     orderArray.put("orderArray", Arrays.toString(arrayOrder));
-                    dialog.setDialog(orderArray.toString(), this);
+                    dialog.setDialog("คุณต้องการที่จะเริ่มหรือไม่", this);
+//                    dialog.setDialog(orderArray.toString(), this);
                     dialog.show(getFragmentManager(),"test");
                     return true;
                 } catch (JSONException e) {

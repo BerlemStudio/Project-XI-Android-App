@@ -4,10 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+    import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by patawat on 2/4/2017 AD.
@@ -55,5 +56,9 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
         return this.orderData;
     }
 
+    public void onItemMove(int FromPosition, int ToPosition){
+        Collections.swap(this.orderData, FromPosition, ToPosition);
+        notifyItemMoved(FromPosition, ToPosition);
+    }
 
 }
