@@ -86,19 +86,19 @@ public class activity_story_contents_list extends AppCompatActivity {
 
                 String[] arrayOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
-                    arrayOrder[i] = list.get(i).getScene();
+                    arrayOrder[i] = "\""+list.get(i).getScene()+"\"";
                 }
-                try {
+//                try {
                     JSONObject orderArray = new JSONObject();
-                    orderArray.put("orderArray", Arrays.toString(arrayOrder));
-//                    dialog.setDialog("คุณต้องการที่จะเริ่มหรือไม่", this);
-                    dialog.setDialog(orderArray.toString(), this);
+                    String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
+//                    orderArray.put(input, arrayOrder);
+                    dialog.setDialog(input, this);
                     dialog.show(getFragmentManager(),"test");
                     return true;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return false;
-                }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    return false;
+//                }
             }
             default: return super.onOptionsItemSelected(item);
         }
