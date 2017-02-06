@@ -17,7 +17,10 @@ import android.view.MenuItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class OrderingActivity extends AppCompatActivity {
@@ -85,14 +88,17 @@ public class OrderingActivity extends AppCompatActivity {
                 startDialog dialog = new startDialog();
                 ArrayList<story> list = mAdapter.getList();
 
-                String[] arratOrder = new String[list.size()];
+                String[] arrayOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
-                    arratOrder[i] = list.get(i).getName();
+                    arrayOrder[i] = list.get(i).getScene();
+
                 }
                 try {
-                    JSONArray json = new JSONArray(arratOrder);
-                    dialog.setDialog("คุณต้องการที่จะเริ่มหรือไม่", this);
-//                    dialog.setDialog(json.toString(), this);
+                    JSONObject orderArray = new JSONObject();
+                    orderArray.put("orderArray", Arrays.toString(arrayOrder));
+
+//                    dialog.setDialog("คุณต้องการที่จะเริ่มหรือไม่", this);
+                    dialog.setDialog(orderArray.toString(), this);
                     dialog.show(getFragmentManager(),"StartWarning");
                     return true;
                 } catch (JSONException e) {

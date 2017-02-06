@@ -10,10 +10,12 @@ public class story implements Serializable{
     private String name;
     private String des;
     private String img_path;
-    public story(String name, String des, String img_path){
+    private String scene;
+    public story(String name, String des, String img_path, String scene){
         this.name = name;
         this.des = des;
         this.img_path = img_path;
+        this.scene = scene;
     }
 
     public String getName(){
@@ -25,6 +27,7 @@ public class story implements Serializable{
     public String getImg_path(){
         return this.img_path;
     }
+    public String getScene(){ return this.scene;}
     public void setName(String name){
         this.name = name;
     }

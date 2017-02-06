@@ -83,15 +83,16 @@ public class activity_story_contents_list extends AppCompatActivity {
             case R.id.start:{
                 startDialog dialog = new startDialog();
                 ArrayList<story> list = mAdapter.getList();
+
                 String[] arrayOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
-                    arrayOrder[i] = list.get(i).getName();
+                    arrayOrder[i] = list.get(i).getScene();
                 }
                 try {
                     JSONObject orderArray = new JSONObject();
                     orderArray.put("orderArray", Arrays.toString(arrayOrder));
-                    dialog.setDialog("คุณต้องการที่จะเริ่มหรือไม่", this);
-//                    dialog.setDialog(orderArray.toString(), this);
+//                    dialog.setDialog("คุณต้องการที่จะเริ่มหรือไม่", this);
+                    dialog.setDialog(orderArray.toString(), this);
                     dialog.show(getFragmentManager(),"test");
                     return true;
                 } catch (JSONException e) {
@@ -129,7 +130,9 @@ public class activity_story_contents_list extends AppCompatActivity {
             String name = obj.getString("name");
             String des = obj.getString("des");
             String Img_path = obj.getString("img_path");
-            story test= new story(name, des, Img_path);
+            String scene = obj.getString("scene");
+
+            story test= new story(name, des, Img_path, scene);
             list.add(test);
         }
 

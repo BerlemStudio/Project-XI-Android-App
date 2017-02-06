@@ -31,9 +31,10 @@ public class startDialog extends DialogFragment {
         this.text = text;
         this.activity = activity;
     }
+
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(this.text).setPositiveButton("ใช่",new DialogInterface.OnClickListener() {
+        builder.setMessage("คุณต้องการที่จะเริ่มหรือไม่").setPositiveButton("ใช่",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 writeFile();
                 Intent intent = new Intent();
@@ -52,17 +53,17 @@ public class startDialog extends DialogFragment {
         this.verifyStoragePermissions();
         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-//        File dir = new File(root, "spaceTour");
+        File dir = new File(root, "spaceTour");
 //        File dir = new File(root, "spaceTour/data");
-        File dir = new File(root, "Android/data/com.BerlemStudio.ProjectX/files/ContentManagement");
-//        File path = getFile
+//        File dir = new File(root, "Android/data/com.BerlemStudio.ProjectX/files/ContentManagement");
         if(!dir.exists()){
             dir.mkdir();
         }
         File file = new File(dir,"order.json");
         if (file.exists ()) {
             file.delete ();
-        }else {
+        }
+
             try {
                 FileOutputStream out = new FileOutputStream(file);
                 out.write(this.text.getBytes());
@@ -70,7 +71,7 @@ public class startDialog extends DialogFragment {
             } catch (Exception e){
                 e.printStackTrace();
             }
-        }
+
     }
 
     public void verifyStoragePermissions(){

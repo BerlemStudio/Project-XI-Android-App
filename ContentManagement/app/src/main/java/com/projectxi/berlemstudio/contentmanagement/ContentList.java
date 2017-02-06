@@ -141,10 +141,11 @@ public class ContentList extends AppCompatActivity {
             String name = obj.getString("name");
             String des = obj.getString("des");
             String Img_path = obj.getString("img_path");
-            story test= new story(name, des, Img_path);
+            String scene = obj.getString("scene");
+
+            story test= new story(name, des, Img_path, scene);
             list.add(test);
         }
-
         return list;
     }
 

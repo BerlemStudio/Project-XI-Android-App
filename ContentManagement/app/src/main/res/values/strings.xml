@@ -8,7 +8,7 @@
 
     <!--Menu Nav string-->
     <string name="action_swap">สลับ</string>
-    <string name="action_start">เรื่ม</string>
+    <string name="action_start">เริ่ม</string>
     <string name="action_order">จัดลำดับ</string>
     <string name="action_next">ต่อไป</string>
 
