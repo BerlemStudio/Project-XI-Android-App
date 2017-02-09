@@ -1,12 +1,14 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.Adapter;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
+
+import com.projectxi.berlemstudio.contentmanagement.R;
+import com.projectxi.berlemstudio.contentmanagement.res.story;
 
 import java.util.ArrayList;
 import java.util.Collections;

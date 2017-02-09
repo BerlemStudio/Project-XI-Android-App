@@ -1,4 +1,4 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.dialog;
 
 import android.Manifest;
 import android.app.Activity;

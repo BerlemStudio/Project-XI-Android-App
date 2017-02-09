@@ -1,4 +1,4 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.projectxi.berlemstudio.contentmanagement.R;
+import com.projectxi.berlemstudio.contentmanagement.res.story;
 
 import java.util.ArrayList;
 import java.util.Collections;

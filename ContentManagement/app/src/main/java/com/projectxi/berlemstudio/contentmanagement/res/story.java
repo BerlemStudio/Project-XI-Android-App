@@ -1,4 +1,4 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.res;
 
 import java.io.Serializable;
 

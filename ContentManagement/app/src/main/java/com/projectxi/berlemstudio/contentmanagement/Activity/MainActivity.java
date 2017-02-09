@@ -1,11 +1,14 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
-import android.support.v7.widget.Toolbar;
+
+import com.projectxi.berlemstudio.contentmanagement.Activity.activity_story_contents_list;
+import com.projectxi.berlemstudio.contentmanagement.ContentList;
+import com.projectxi.berlemstudio.contentmanagement.R;
 
 public class MainActivity extends AppCompatActivity {
 

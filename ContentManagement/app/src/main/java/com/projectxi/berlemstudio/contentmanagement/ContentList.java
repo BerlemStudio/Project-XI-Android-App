@@ -15,6 +15,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.projectxi.berlemstudio.contentmanagement.Activity.OrderingActivity;
+import com.projectxi.berlemstudio.contentmanagement.Adapter.content_list_adapter;
+import com.projectxi.berlemstudio.contentmanagement.dialog.nextDialog;
+import com.projectxi.berlemstudio.contentmanagement.res.story;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +27,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class ContentList extends AppCompatActivity {

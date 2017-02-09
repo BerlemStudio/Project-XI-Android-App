@@ -1,4 +1,4 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
