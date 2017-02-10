@@ -18,7 +18,7 @@ import android.view.MenuItem;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
-import com.projectxi.berlemstudio.contentmanagement.res.story;
+import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
 import org.json.JSONObject;
 
@@ -57,9 +57,9 @@ public class OrderingActivity extends AppCompatActivity {
         ab.setTitle("ลำดับเนื้อเรื่อง");
 
         Intent intent = getIntent();
-        ArrayList<story> myDataset;
+        ArrayList<Scene> myDataset;
         try {
-            myDataset = (ArrayList<story>) intent.getSerializableExtra("selectedList");
+            myDataset = (ArrayList<Scene>) intent.getSerializableExtra("selectedList");
             this.mAdapter = new ordering_adapter( myDataset );
             mRecyclerView.setAdapter(mAdapter);
         }catch (Exception e){
@@ -89,7 +89,7 @@ public class OrderingActivity extends AppCompatActivity {
             }
             case R.id.start:{
                 startDialog dialog = new startDialog();
-                ArrayList<story> list = mAdapter.getList();
+                ArrayList<Scene> list = mAdapter.getList();
 
                 String[] arrayOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){

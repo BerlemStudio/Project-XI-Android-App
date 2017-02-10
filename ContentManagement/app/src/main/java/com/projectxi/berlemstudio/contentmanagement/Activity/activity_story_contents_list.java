@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.MyAdapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
-import com.projectxi.berlemstudio.contentmanagement.res.story;
+import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,7 +87,7 @@ public class activity_story_contents_list extends AppCompatActivity {
             }
             case R.id.start:{
                 startDialog dialog = new startDialog();
-                ArrayList<story> list = mAdapter.getList();
+                ArrayList<Scene> list = mAdapter.getList();
 
                 String[] arrayOrder = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
@@ -123,7 +123,7 @@ public class activity_story_contents_list extends AppCompatActivity {
     public ArrayList getJSON() throws JSONException {
         JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
         JSONArray array = jsonObj.getJSONArray("content");
-        ArrayList<story> list = new ArrayList<>();
+        ArrayList<Scene> list = new ArrayList<>();
 
         for (int count = 0 ; count < array.length() ; count++){
             JSONObject obj = array.getJSONObject(count);
@@ -132,7 +132,7 @@ public class activity_story_contents_list extends AppCompatActivity {
             String Img_path = obj.getString("img_path");
             String scene = obj.getString("scene");
 
-            story test= new story(name, des, Img_path, scene);
+            Scene test= new Scene(name, des, Img_path, scene);
             list.add(test);
         }
 

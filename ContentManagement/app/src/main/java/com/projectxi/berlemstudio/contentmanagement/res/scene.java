@@ -6,12 +6,12 @@ import java.io.Serializable;
  * Created by patawat on 1/18/2017 AD.
  */
 
-public class story implements Serializable{
+public class Scene implements Serializable{
     private String name;
     private String des;
     private String img_path;
     private String scene;
-    public story(String name, String des, String img_path, String scene){
+    public Scene(String name, String des, String img_path, String scene){
         this.name = name;
         this.des = des;
         this.img_path = img_path;

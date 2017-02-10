@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.view.View;
 
 import com.projectxi.berlemstudio.contentmanagement.R;
-import com.projectxi.berlemstudio.contentmanagement.res.story;
+import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import java.util.Collections;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private ArrayList<story> mDataset;
+    private ArrayList<Scene> mDataset;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

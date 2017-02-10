@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.projectxi.berlemstudio.contentmanagement.R;
-import com.projectxi.berlemstudio.contentmanagement.res.story;
+import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import java.util.Collections;
 
 public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.ViewHolder>{
 
-    private ArrayList<story> orderData;
+    private ArrayList<Scene> orderData;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -29,7 +29,7 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
         }
     }
 
-    public ordering_adapter(ArrayList<story> data){
+    public ordering_adapter(ArrayList<Scene> data){
         this.orderData =  data;
     }
     @Override

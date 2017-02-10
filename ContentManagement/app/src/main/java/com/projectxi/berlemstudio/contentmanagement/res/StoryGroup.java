@@ -10,9 +10,9 @@ public class StoryGroup {
     public String name;
     public String des;
     public int age;
-    public ArrayList<story> storyList;
+    public ArrayList<Scene> storyList;
 
-    public StoryGroup(String name, String des, int age, ArrayList<story> storyList){
+    public StoryGroup(String name, String des, int age, ArrayList<Scene> storyList){
         this.name = name;
         this.des = des;
         this.age = age;

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.projectxi.berlemstudio.contentmanagement.R;
-import com.projectxi.berlemstudio.contentmanagement.res.story;
+import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,8 +20,8 @@ import java.util.Collections;
  */
 
 public class content_list_adapter extends RecyclerView.Adapter<content_list_adapter.ViewHolder> {
-    private ArrayList<story> mDataset;
-    private ArrayList<story> selectedList;
+    private ArrayList<Scene> mDataset;
+    private ArrayList<Scene> selectedList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -43,7 +43,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
 
     public content_list_adapter(ArrayList s) {
         mDataset = s;
-        this.selectedList = new ArrayList<story>();
+        this.selectedList = new ArrayList<Scene>();
     }
 
     @Override
