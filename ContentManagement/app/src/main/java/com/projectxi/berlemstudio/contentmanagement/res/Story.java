@@ -6,20 +6,18 @@ import java.util.ArrayList;
  * Created by patawat on 2/8/2017 AD.
  */
 
-public class StoryGroup {
+public class Story {
+    public long id;
     public String name;
     public String des;
-    public int age;
-    public ArrayList<Scene> storyList;
+    public String created_by;
+//    public ArrayList<Scene> storyList;
 
-    public StoryGroup(String name, String des, int age, ArrayList<Scene> storyList){
+    public Story(long id, String name, String des, String created_by){
         this.name = name;
         this.des = des;
-        this.age = age;
-        this.storyList = storyList;
-    }
-    public int getAge(){
-        return this.age;
+        this.id = id;
+        this.created_by = created_by;
     }
     public String getName(){
         return this.name;
@@ -33,8 +31,11 @@ public class StoryGroup {
     public void setDes(String des){
         this.des = des;
     }
-    public void setAge(int age){
-        this.age = age;
+    public String getCreated_by(){
+        return this.created_by;
+    }
+    public void setCreated_by(String Creator){
+        this.created_by = Creator;
     }
 
 }
