@@ -1,22 +1,23 @@
 package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.projectxi.berlemstudio.contentmanagement.Adapter.MyAdapter;
+import com.projectxi.berlemstudio.contentmanagement.Adapter.content_list_adapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
-import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
+import com.projectxi.berlemstudio.contentmanagement.dialog.nextDialog;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
 import org.json.JSONArray;
@@ -26,12 +27,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class activity_story_contents_list extends AppCompatActivity {
+
+public class ContentList extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private MyAdapter mAdapter;
+    private content_list_adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
 
@@ -64,41 +65,40 @@ public class activity_story_contents_list extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        this.mAdapter = new MyAdapter( myDataset );
+        this.mAdapter = new content_list_adapter( myDataset );
         mRecyclerView.setAdapter(mAdapter);
     }
 
     // Create Menu
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.story_content_bar, menu);
+        inflater.inflate(R.menu.contentbar, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
-            case R.id.swap:{
-                this.mAdapter.onItemMove(0, 1);
-                return true;
-            }
+//            case R.id.orderButton:{
+//                Intent intent = new Intent(this, OrderingActivity.class);
+//                intent.putExtra("selectedList", mAdapter.getSelectedList());
+//                startActivity(intent);
+//                return true;
+//            }
             case android.R.id.home:{
                 this.finish();
                 return true;
             }
-            case R.id.start:{
-                startDialog dialog = new startDialog();
-                ArrayList<Scene> list = mAdapter.getList();
-
-                String[] arrayOrder = new String[list.size()];
-                for (int i = 0; i < list.size() ; i++){
-                    arrayOrder[i] = "\""+list.get(i).getScene()+"\"";
+            case R.id.next:{
+                if(mAdapter.getSelectedList().size()==0){
+                    nextDialog dialog = new nextDialog();
+                    dialog.show(getFragmentManager(), "WarningSelected");
+                }else{
+                    Intent intent = new Intent(this, OrderingActivity.class);
+                    intent.putExtra("selectedList", mAdapter.getSelectedList());
+                    startActivity(intent);
                 }
-                    JSONObject orderArray = new JSONObject();
-                    String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
-                    dialog.setDialog(input, this);
-                    dialog.show(getFragmentManager(),"test");
-                    return true;
-
+                return true;
             }
             default: return super.onOptionsItemSelected(item);
         }
@@ -135,7 +135,6 @@ public class activity_story_contents_list extends AppCompatActivity {
             Scene test= new Scene(name, des, Img_path, scene);
             list.add(test);
         }
-
         return list;
     }
 

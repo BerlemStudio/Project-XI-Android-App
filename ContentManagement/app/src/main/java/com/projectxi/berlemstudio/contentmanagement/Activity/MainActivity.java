@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.projectxi.berlemstudio.contentmanagement.Activity.activity_story_contents_list;
-import com.projectxi.berlemstudio.contentmanagement.ContentList;
 import com.projectxi.berlemstudio.contentmanagement.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickQuickStart(View view){
-        Intent intent = new Intent(this, activity_story_contents_list.class);
+//        Intent intent = new Intent(this, activity_story_scene_list.class);
+//        startActivity(intent);
+        Intent intent = new Intent(this, StoryListActivity.class);
         startActivity(intent);
     }
 

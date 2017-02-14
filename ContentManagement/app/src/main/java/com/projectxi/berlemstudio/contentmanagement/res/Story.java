@@ -11,7 +11,6 @@ public class Story {
     public String name;
     public String des;
     public String created_by;
-//    public ArrayList<Scene> storyList;
 
     public Story(long id, String name, String des, String created_by){
         this.name = name;

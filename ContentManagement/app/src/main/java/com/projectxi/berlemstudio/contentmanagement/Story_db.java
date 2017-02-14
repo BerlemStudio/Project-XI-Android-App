@@ -16,6 +16,7 @@ public class Story_db {
         public static final String STORY_NAME = "story_name";
         public static final String STORY_Description = "story_description";
         public static final String Created_by = "created_by";
-
+        public static final String SCENE_LIST = "scene_list";
     }
+
 }

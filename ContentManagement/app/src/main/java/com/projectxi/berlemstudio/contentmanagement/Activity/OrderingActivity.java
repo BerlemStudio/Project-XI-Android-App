@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
+import com.projectxi.berlemstudio.contentmanagement.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.R;
+import com.projectxi.berlemstudio.contentmanagement.convertArrays;
 import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
@@ -32,6 +35,7 @@ public class OrderingActivity extends AppCompatActivity {
     private ordering_adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private DbHelper myHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +74,14 @@ public class OrderingActivity extends AppCompatActivity {
     }
 
     // Create Menu
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.orderingbar, menu);
         return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.swap:{
@@ -95,23 +101,25 @@ public class OrderingActivity extends AppCompatActivity {
                 for (int i = 0; i < list.size() ; i++){
                     arrayOrder[i] = "\""+list.get(i).getScene()+"\"";
                 }
-//                try {
-                    JSONObject orderArray = new JSONObject();
-                    String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
-//                    orderArray.put(input, arrayOrder);
-
-                    dialog.setDialog(input, this);
-                    dialog.show(getFragmentManager(),"StartWarning");
-                    return true;
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                    return false;
-//                }
+                saveLastStart("lastStory", "", "Patawat", arrayOrder);
+                JSONObject orderArray = new JSONObject();
+                String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
+                dialog.setDialog(input, this);
+                dialog.show(getFragmentManager(),"StartWarning");
+                return true;
             }
             default: return super.onOptionsItemSelected(item);
         }
     }
 
+    public void saveLastStart(String story,String des,String creator, String[] order){
+        myHelper = new DbHelper(this);
+        convertArrays convertor = new convertArrays();
+        String convert = convertor.convertArrayToString(order);
+        myHelper.insertStory("Boss","TestDes","Patawat",convert);
+        Log.d("saveStory", "saveLastStart: ");
+//        myHelper.insertStory("Saturn","TestDes","Patawat");
+    }
 
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -120,4 +128,5 @@ public class OrderingActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
     }
+
 }

@@ -20,12 +20,13 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+Story_db.column.TABLE_NAME + " ("+Story_db.column._ID+ "  INTEGER PRIMARY KEY,"+
             Story_db.column.STORY_NAME + " TEXT,"+
             Story_db.column.STORY_Description + " TEXT,"+
-            Story_db.column.Created_by + " TEXT)";
+            Story_db.column.Created_by + " TEXT,"+
+            Story_db.column.SCENE_LIST + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + Story_db.column.TABLE_NAME;
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "FeedReader.db";
 
     public DbHelper(Context context) {
@@ -42,18 +43,19 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertStory(String name, String des, String Creator){
+    public void insertStory(String name, String des, String Creator, String Scene){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Story_db.column.STORY_NAME, name);
         values.put(Story_db.column.STORY_Description, des);
         values.put(Story_db.column.Created_by, Creator);
+        values.put(Story_db.column.SCENE_LIST, Scene);
 
         long key = db.insert(Story_db.column.TABLE_NAME,null,values);
     }
 
-    public List<String[]> getStoryList(){
+    public List<Story> getStoryList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         List data = new ArrayList();
@@ -69,5 +71,25 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.close();
         return data;
+    }
+
+    public List<String> getStoryNameList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List data = new ArrayList();
+        Cursor cursor = db.query(Story_db.column.TABLE_NAME,null,null,null,null,null,null);
+        while(cursor.moveToNext()){
+            String name = cursor.getString(1);
+
+            data.add(name);
+        }
+
+        db.close();
+        return data;
+    }
+
+    public void deleteAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ Story_db.column.TABLE_NAME);
     }
 }
