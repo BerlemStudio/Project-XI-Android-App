@@ -65,7 +65,9 @@ public class DbHelper extends SQLiteOpenHelper {
             String name = cursor.getString(1);
             String des = cursor.getString(2);
             String creator = cursor.getString(3);
-            Story newStory = new Story(id, name, des, creator);
+            convertArrays convertor = new convertArrays();
+            String[] scene = convertor.convertStringToArray(cursor.getString(4));
+            Story newStory = new Story(id, name, des, creator, scene);
             data.add(newStory);
         }
 

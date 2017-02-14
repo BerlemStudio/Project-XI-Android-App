@@ -11,18 +11,25 @@ public class Story {
     public String name;
     public String des;
     public String created_by;
+    public String[] scene;
 
-    public Story(long id, String name, String des, String created_by){
+    public Story(long id, String name, String des, String created_by, String[] scene){
         this.name = name;
         this.des = des;
         this.id = id;
         this.created_by = created_by;
+        this.scene = scene;
+
     }
     public String getName(){
         return this.name;
     }
     public String getDes(){
         return this.des;
+    }
+    public String[] getScene(){ return this.scene;}
+    public void setScene(String[] scene){
+        this.scene = scene;
     }
     public void setName(String name){
         this.name = name;

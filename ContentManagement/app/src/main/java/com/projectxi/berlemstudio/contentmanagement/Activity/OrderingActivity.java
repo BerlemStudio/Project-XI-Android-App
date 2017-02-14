@@ -101,7 +101,11 @@ public class OrderingActivity extends AppCompatActivity {
                 for (int i = 0; i < list.size() ; i++){
                     arrayOrder[i] = "\""+list.get(i).getScene()+"\"";
                 }
-                saveLastStart("lastStory", "", "Patawat", arrayOrder);
+                String[] order = new String[list.size()];
+                for (int i = 0; i < list.size() ; i++){
+                    order[i] = list.get(i).getScene();
+                }
+                saveLastStart("lastStory", "", "Patawat", order);
                 JSONObject orderArray = new JSONObject();
                 String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
                 dialog.setDialog(input, this);
@@ -116,7 +120,9 @@ public class OrderingActivity extends AppCompatActivity {
         myHelper = new DbHelper(this);
         convertArrays convertor = new convertArrays();
         String convert = convertor.convertArrayToString(order);
-        myHelper.insertStory("Boss","TestDes","Patawat",convert);
+        Log.d("save", order[0]);
+        myHelper.deleteAll();
+        myHelper.insertStory("LastPlay","TestDes","Patawat",convert);
         Log.d("saveStory", "saveLastStart: ");
 //        myHelper.insertStory("Saturn","TestDes","Patawat");
     }

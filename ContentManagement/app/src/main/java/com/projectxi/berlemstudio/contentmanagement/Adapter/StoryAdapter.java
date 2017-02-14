@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.projectxi.berlemstudio.contentmanagement.Activity.StorySceneListActivity;
 import com.projectxi.berlemstudio.contentmanagement.R;
+import com.projectxi.berlemstudio.contentmanagement.res.Story;
 
 /**
  * Created by patawat on 2/13/2017 AD.
@@ -17,10 +18,10 @@ import com.projectxi.berlemstudio.contentmanagement.R;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> {
 
-    private String[] dataset;
+    private Story[] dataset;
     private Context context;
 
-    public StoryAdapter(String[] dataset, Context context){
+    public StoryAdapter(Story[] dataset, Context context){
         this.context = context;
         this.dataset = dataset;
     }
@@ -37,12 +38,14 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(StoryAdapter.ViewHolder holder, int position){
-        holder.mTextView.setText(dataset[position]);
+    public void onBindViewHolder(StoryAdapter.ViewHolder holder, final int position){
+        holder.mTextView.setText(dataset[position].getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, StorySceneListActivity.class);
+                String[] scene = dataset[position].getScene();
+                intent.putExtra("scene", scene);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

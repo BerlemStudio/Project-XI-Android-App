@@ -1,6 +1,7 @@
 package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -10,11 +11,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.projectxi.berlemstudio.contentmanagement.Adapter.MyAdapter;
+import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
@@ -39,6 +42,11 @@ public class StorySceneListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        String[] sceneList;
+        sceneList = intent.getStringArrayExtra("scene");
+
+
         this.verifyStoragePermissions();
 
         setContentView(R.layout.activity_content_list);
@@ -52,7 +60,7 @@ public class StorySceneListActivity extends AppCompatActivity {
 
         ArrayList myDataset = null;
         try {
-            myDataset = getJSON();
+            myDataset = getJSON(sceneList);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -109,7 +117,7 @@ public class StorySceneListActivity extends AppCompatActivity {
     public String loadJSONFromAsset(){
         String json = null;
         try {
-            InputStream is = getAssets().open("content.json");
+            InputStream is = getAssets().open("sceneInfo.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -122,13 +130,13 @@ public class StorySceneListActivity extends AppCompatActivity {
         return json;
     }
 
-    public ArrayList getJSON() throws JSONException {
+    public ArrayList getJSON(String[] sceneList) throws JSONException {
         JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
-        JSONArray array = jsonObj.getJSONArray("content");
         ArrayList<Scene> list = new ArrayList<>();
 
-        for (int count = 0 ; count < array.length() ; count++){
-            JSONObject obj = array.getJSONObject(count);
+        for (int count = 0; count<sceneList.length; count++){
+//            Log.d("test", sceneList[count]);
+            JSONObject obj = jsonObj.getJSONObject(sceneList[count]);
             String name = obj.getString("name");
             String des = obj.getString("des");
             String Img_path = obj.getString("img_path");
@@ -137,8 +145,42 @@ public class StorySceneListActivity extends AppCompatActivity {
             Scene test= new Scene(name, des, Img_path, scene);
             list.add(test);
         }
+
         return list;
     }
+//    public String loadJSONFromAsset(){
+//        String json = null;
+//        try {
+//            InputStream is = getAssets().open("content.json");
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//            json = new String(buffer, "UTF-8");
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//        return json;
+//    }
+//
+//    public ArrayList getJSON() throws JSONException {
+//        JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
+//        JSONArray array = jsonObj.getJSONArray("content");
+//        ArrayList<Scene> list = new ArrayList<>();
+//
+//        for (int count = 0 ; count < array.length() ; count++){
+//            JSONObject obj = array.getJSONObject(count);
+//            String name = obj.getString("name");
+//            String des = obj.getString("des");
+//            String Img_path = obj.getString("img_path");
+//            String scene = obj.getString("scene");
+//
+//            Scene test= new Scene(name, des, Img_path, scene);
+//            list.add(test);
+//        }
+//        return list;
+//    }
 
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);

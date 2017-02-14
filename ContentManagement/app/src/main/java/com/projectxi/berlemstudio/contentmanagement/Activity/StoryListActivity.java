@@ -16,6 +16,7 @@ import com.projectxi.berlemstudio.contentmanagement.Adapter.StoryAdapter;
 import com.projectxi.berlemstudio.contentmanagement.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
+import com.projectxi.berlemstudio.contentmanagement.res.Story;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,7 @@ import java.util.List;
 public class StoryListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private StoryAdapter mAdapter;
-    private List<String> stories;
+    private List<Story> stories;
     private DbHelper myHelper;
     private Context context;
 
@@ -42,7 +43,8 @@ public class StoryListActivity extends AppCompatActivity {
         this.context = getApplicationContext();
 
         myHelper = new DbHelper(this);
-        stories = myHelper.getStoryNameList();
+//        stories = myHelper.getStoryNameList();
+        stories = myHelper.getStoryList();
 
         // set Recycle view
         setContentView(R.layout.activity_content_list);
@@ -51,8 +53,10 @@ public class StoryListActivity extends AppCompatActivity {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        String[] stockArr = new String[stories.size()];
-        this.mAdapter = new StoryAdapter( stories.toArray(stockArr), this.context );
+        Story[] arr = new Story[stories.size()];
+        arr = stories.toArray(arr);
+
+        this.mAdapter = new StoryAdapter( arr, this.context );
         mRecyclerView.setAdapter(mAdapter);
 
         //        set tool bar
