@@ -70,7 +70,6 @@ public class OrderingActivity extends AppCompatActivity {
             System.out.print(e.toString());
         }
 
-
     }
 
     // Create Menu
@@ -121,8 +120,8 @@ public class OrderingActivity extends AppCompatActivity {
         convertArrays convertor = new convertArrays();
         String convert = convertor.convertArrayToString(order);
         Log.d("save", order[0]);
-        myHelper.deleteAll();
-        myHelper.insertStory("LastPlay","TestDes","Patawat",convert);
+//        myHelper.deleteAll();
+        myHelper.insertStory("การเล่นครั้งล่าสุด","เนื้อหาที่ใช้เขาดูครั้งล่าสุด","Patawat",convert);
         Log.d("saveStory", "saveLastStart: ");
 //        myHelper.insertStory("Saturn","TestDes","Patawat");
     }

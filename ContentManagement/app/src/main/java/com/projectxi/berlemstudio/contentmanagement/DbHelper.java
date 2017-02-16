@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.projectxi.berlemstudio.contentmanagement.res.Story;
 
@@ -45,14 +46,31 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void insertStory(String name, String des, String Creator, String Scene){
         SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(Story_db.column.TABLE_NAME,null, Story_db.column.STORY_NAME+"=?",new String[]{name},null,null,null);
+        if (cursor.getCount()!=0){
+            Log.d("cursorNull", "insertStory: "+cursor);
+            this.updateStory(name, des, Creator, Scene);
+        }else{
+            ContentValues values = new ContentValues();
+            values.put(Story_db.column.STORY_NAME, name);
+            values.put(Story_db.column.STORY_Description, des);
+            values.put(Story_db.column.Created_by, Creator);
+            values.put(Story_db.column.SCENE_LIST, Scene);
+
+            long key = db.insert(Story_db.column.TABLE_NAME,null,values);
+        }
+
+    }
+
+    public void updateStory(String name, String des, String Creator, String Scene){
+        SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Story_db.column.STORY_NAME, name);
         values.put(Story_db.column.STORY_Description, des);
         values.put(Story_db.column.Created_by, Creator);
         values.put(Story_db.column.SCENE_LIST, Scene);
-
-        long key = db.insert(Story_db.column.TABLE_NAME,null,values);
+        db.update(Story_db.column.TABLE_NAME,values,Story_db.column.STORY_NAME+" = ?", new String[] {name});
     }
 
     public List<Story> getStoryList(){
