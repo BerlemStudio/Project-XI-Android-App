@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.projectxi.berlemstudio.contentmanagement.ItemTouchHelperAdapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
@@ -16,7 +17,7 @@ import java.util.Collections;
  * Created by patawat on 2/4/2017 AD.
  */
 
-public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.ViewHolder>{
+public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.ViewHolder> implements ItemTouchHelperAdapter{
 
     private ArrayList<Scene> orderData;
 
@@ -27,6 +28,12 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
             super(v);
             name = (TextView) v.findViewById(R.id.name_ordering_card);
         }
+    }
+
+    @Override
+    public void onItemDismiss(int position){
+        this.orderData.remove(position);
+        notifyItemRemoved(position);
     }
 
     public ordering_adapter(ArrayList<Scene> data){
@@ -58,6 +65,8 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
         return this.orderData;
     }
 
+
+    @Override
     public void onItemMove(int FromPosition, int ToPosition){
         Collections.swap(this.orderData, FromPosition, ToPosition);
         notifyItemMoved(FromPosition, ToPosition);

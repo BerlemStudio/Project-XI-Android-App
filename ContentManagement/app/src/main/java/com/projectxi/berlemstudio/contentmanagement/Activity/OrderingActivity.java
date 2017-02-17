@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
 import com.projectxi.berlemstudio.contentmanagement.CreateStoryActivity;
 import com.projectxi.berlemstudio.contentmanagement.DbHelper;
+import com.projectxi.berlemstudio.contentmanagement.ItemTouchHelperCallback;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.convertArrays;
 import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
@@ -66,10 +68,15 @@ public class OrderingActivity extends AppCompatActivity {
         try {
             myDataset = (ArrayList<Scene>) intent.getSerializableExtra("selectedList");
             this.mAdapter = new ordering_adapter( myDataset );
+            ItemTouchHelper.Callback callback =
+                    new ItemTouchHelperCallback(this.mAdapter);
+            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+            touchHelper.attachToRecyclerView(mRecyclerView);
             mRecyclerView.setAdapter(mAdapter);
         }catch (Exception e){
             System.out.print(e.toString());
         }
+
 
     }
 
@@ -118,7 +125,7 @@ public class OrderingActivity extends AppCompatActivity {
                 for (int i = 0; i < list.size() ; i++){
                     order[i] = list.get(i).getScene();
                 }
-                saveLastStart("lastStory", "", "Patawat", order);
+                saveLastStart("การเล่นครั้งล่าสุด", "เนื้อหาที่ใช้เขาดูครั้งล่าสุด", "Patawat", order);
                 JSONObject orderArray = new JSONObject();
                 String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
                 dialog.setDialog(input, this);
@@ -133,16 +140,15 @@ public class OrderingActivity extends AppCompatActivity {
         myHelper = new DbHelper(this);
         convertArrays convertor = new convertArrays();
         String convert = convertor.convertArrayToString(order);
-//        myHelper.deleteAll();
-        myHelper.insertStory("การเล่นครั้งล่าสุด","เนื้อหาที่ใช้เขาดูครั้งล่าสุด","Patawat",convert);
-        Log.d("saveStory", "saveLastStart: ");
-//        myHelper.insertStory("Saturn","TestDes","Patawat");
+        myHelper.insertStory(story , des, creator, convert);
+        Log.d("saveStory", "saveLastStart: True");
     }
 
+    // Verify storage to write on
     public void verifyStoragePermissions(){
-        int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permisstion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        if(permistion!= PackageManager.PERMISSION_GRANTED){
+        if(permisstion!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
     }

@@ -32,13 +32,16 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint"
+                android:layout_margin="10dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/input_story_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/form_name"
+                    android:textColor="@color/primaryText"
                     android:inputType="text"
                     android:layout_marginBottom="5dp"
                     android:textColorHint="@color/secondaryText"
@@ -48,13 +51,16 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint"
+                android:layout_margin="10dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/input_story_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/form_des"
+                    android:textColor="@color/primaryText"
                     android:inputType="text"
                     android:layout_marginBottom="5dp"
                     />
@@ -62,24 +68,28 @@
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint"
+                android:layout_margin="10dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/input_story_creator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/primaryText"
                     android:hint="@string/creator"
                     android:inputType="text"
                     android:layout_marginBottom="5dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button android:id="@+id/button_send"
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/form_save"
-                />
+
+                <Button android:id="@+id/button_send"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/form_save"
+                    android:layout_margin="20dp" />
 
         </LinearLayout>
 
