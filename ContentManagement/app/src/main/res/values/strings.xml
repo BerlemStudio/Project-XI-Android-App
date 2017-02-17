@@ -11,6 +11,7 @@
     <string name="action_start">เริ่ม</string>
     <string name="action_order">จัดลำดับ</string>
     <string name="action_next">ต่อไป</string>
+    <string name="action_save">บันทึก</string>
 
     <!--label String-->
     <string name="primarySchool">ประถม</string>
@@ -22,5 +23,11 @@
     <!--view card in content list-->
     <string name="button_select">เลือก</string>
     <string name="button_selected">ยกเลิก</string>
+
+    <!--Create Story form-->
+    <string name="form_name">ชื่อเรื่อง</string>
+    <string name="form_des">คำอธิบาย</string>
+    <string name="creator">ผู้เขียน</string>
+    <string name="form_save">บันทึก</string>
 
 </resources>

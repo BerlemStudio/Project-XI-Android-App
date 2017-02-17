@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
+import com.projectxi.berlemstudio.contentmanagement.CreateStoryActivity;
 import com.projectxi.berlemstudio.contentmanagement.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.convertArrays;
@@ -92,6 +93,19 @@ public class OrderingActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             }
+            case R.id.save:{
+                Intent intent = new Intent(this, CreateStoryActivity.class);
+                ArrayList<Scene> list = mAdapter.getList();
+                String[] order = new String[list.size()];
+                for (int i = 0; i < list.size() ; i++){
+                    order[i] = list.get(i).getScene();
+                }
+                convertArrays convertor = new convertArrays();
+                String convert = convertor.convertArrayToString(order);
+                intent.putExtra("selectedList", convert);
+                startActivity(intent);
+                return true;
+            }
             case R.id.start:{
                 startDialog dialog = new startDialog();
                 ArrayList<Scene> list = mAdapter.getList();
@@ -119,7 +133,6 @@ public class OrderingActivity extends AppCompatActivity {
         myHelper = new DbHelper(this);
         convertArrays convertor = new convertArrays();
         String convert = convertor.convertArrayToString(order);
-        Log.d("save", order[0]);
 //        myHelper.deleteAll();
         myHelper.insertStory("การเล่นครั้งล่าสุด","เนื้อหาที่ใช้เขาดูครั้งล่าสุด","Patawat",convert);
         Log.d("saveStory", "saveLastStart: ");
