@@ -1,6 +1,7 @@
 package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,18 +14,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.projectxi.berlemstudio.contentmanagement.Adapter.StoryAdapter;
-import com.projectxi.berlemstudio.contentmanagement.DbHelper;
+import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.R;
-import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 import com.projectxi.berlemstudio.contentmanagement.res.Story;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 //import android.R.id.list;
@@ -41,6 +34,9 @@ public class StoryListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_story_list);
 
         this.context = getApplicationContext();
+
+        // set screen to portrait
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         myHelper = new DbHelper(this);
 //        stories = myHelper.getStoryNameList();

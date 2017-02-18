@@ -2,6 +2,7 @@ package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -18,8 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
-import com.projectxi.berlemstudio.contentmanagement.CreateStoryActivity;
-import com.projectxi.berlemstudio.contentmanagement.DbHelper;
+import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.ItemTouchHelperCallback;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.convertArrays;
@@ -44,6 +44,8 @@ public class OrderingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // set screen to portrait
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.verifyStoragePermissions();
 

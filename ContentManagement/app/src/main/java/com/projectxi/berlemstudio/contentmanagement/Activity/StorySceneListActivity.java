@@ -2,6 +2,7 @@ package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -46,6 +47,8 @@ public class StorySceneListActivity extends AppCompatActivity {
         String[] sceneList;
         sceneList = intent.getStringArrayExtra("scene");
 
+        // set screen to portrait
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.verifyStoragePermissions();
 

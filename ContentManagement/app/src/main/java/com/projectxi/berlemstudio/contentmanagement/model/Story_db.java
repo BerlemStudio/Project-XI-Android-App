@@ -1,4 +1,4 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.model;
 
 import android.provider.BaseColumns;
 

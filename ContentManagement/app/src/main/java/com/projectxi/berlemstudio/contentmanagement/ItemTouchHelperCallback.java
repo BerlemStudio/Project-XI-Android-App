@@ -3,7 +3,7 @@ package com.projectxi.berlemstudio.contentmanagement;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-import com.projectxi.berlemstudio.contentmanagement.Adapter.StoryAdapter;
+import com.projectxi.berlemstudio.contentmanagement.Adapter.ItemTouchHelperAdapter;
 
 /**
  * Created by patawat on 2/17/2017 AD.

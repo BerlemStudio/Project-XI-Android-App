@@ -1,4 +1,4 @@
-package com.projectxi.berlemstudio.contentmanagement;
+package com.projectxi.berlemstudio.contentmanagement.model;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.projectxi.berlemstudio.contentmanagement.convertArrays;
 import com.projectxi.berlemstudio.contentmanagement.res.Story;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+Story_db.column.TABLE_NAME + " ("+Story_db.column._ID+ "  INTEGER PRIMARY KEY,"+
+    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+ Story_db.column.TABLE_NAME + " ("+Story_db.column._ID+ "  INTEGER PRIMARY KEY,"+
             Story_db.column.STORY_NAME + " TEXT,"+
             Story_db.column.STORY_Description + " TEXT,"+
             Story_db.column.Created_by + " TEXT,"+
