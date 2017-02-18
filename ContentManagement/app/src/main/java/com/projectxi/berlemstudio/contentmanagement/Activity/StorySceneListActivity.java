@@ -90,10 +90,7 @@ public class StorySceneListActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
-            case R.id.swap:{
-                this.mAdapter.onItemMove(0, 1);
-                return true;
-            }
+
             case android.R.id.home:{
                 this.finish();
                 return true;

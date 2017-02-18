@@ -93,11 +93,6 @@ public class OrderingActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
-            case R.id.swap:{
-                if (this.mAdapter.getItemCount() != 1)
-                    this.mAdapter.onItemMove(0, 1);
-                return true;
-            }
             case android.R.id.home:{
                 this.finish();
                 return true;
