@@ -31,4 +31,6 @@
     <string name="form_save">บันทึก</string>
     <string name="form_clear">ยกเลิก</string>
 
+    <!--story card-->
+    <string name="creator_story_card">ผู้เขียน: </string>
 </resources>

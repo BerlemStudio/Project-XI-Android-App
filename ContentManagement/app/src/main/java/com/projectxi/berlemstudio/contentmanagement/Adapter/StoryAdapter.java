@@ -40,6 +40,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(StoryAdapter.ViewHolder holder, final int position){
         holder.mTextView.setText(dataset[position].getName());
+        holder.creatorTextView.setText(dataset[position].getCreated_by());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,9 +61,11 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
+        public TextView creatorTextView;
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.name_story_card);
+            creatorTextView = (TextView) v.findViewById(R.id.creator_name_story_card);
         }
     }
 

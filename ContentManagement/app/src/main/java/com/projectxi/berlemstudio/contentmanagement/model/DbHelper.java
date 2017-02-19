@@ -108,7 +108,9 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
         return data;
     }
+    public void delete(){
 
+    }
     public void deleteAll(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from "+ Story_db.column.TABLE_NAME);
