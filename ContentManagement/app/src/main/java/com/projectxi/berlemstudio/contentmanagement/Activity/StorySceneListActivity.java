@@ -153,7 +153,7 @@ public class StorySceneListActivity extends AppCompatActivity {
         ArrayList<Scene> list = new ArrayList<>();
 
         for (int count = 0; count<sceneList.length; count++){
-//            Log.d("test", sceneList[count]);
+
             JSONObject obj = jsonObj.getJSONObject(sceneList[count]);
             String name = obj.getString("name");
             String des = obj.getString("des");
