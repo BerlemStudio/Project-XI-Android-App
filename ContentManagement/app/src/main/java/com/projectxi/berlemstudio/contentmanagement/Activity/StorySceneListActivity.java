@@ -116,10 +116,15 @@ public class StorySceneListActivity extends AppCompatActivity {
                 for (int i = 0; i < list.size() ; i++){
                     arrayOrder[i] = "\""+list.get(i).getScene()+"\"";
                 }
-                    JSONObject orderArray = new JSONObject();
+                String[] order = new String[list.size()];
+                for (int i = 0; i < list.size() ; i++){
+                    order[i] = list.get(i).getScene();
+                }
+
+//                    JSONObject orderArray = new JSONObject();
                     String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
-                    dialog.setDialog(input, this);
-                    dialog.show(getFragmentManager(),"test");
+                    dialog.setDialog(order, input, this);
+                    dialog.show(getFragmentManager(),"StartWarning");
                     return true;
 
             }

@@ -122,10 +122,10 @@ public class OrderingActivity extends AppCompatActivity {
                 for (int i = 0; i < list.size() ; i++){
                     order[i] = list.get(i).getScene();
                 }
-                saveLastStart("การเล่นครั้งล่าสุด", "เนื้อหาที่ใช้เขาดูครั้งล่าสุด", "Auto save", order);
-                JSONObject orderArray = new JSONObject();
+//                saveLastStart("การเล่นครั้งล่าสุด", "เนื้อหาที่ใช้เขาดูครั้งล่าสุด", "Auto save", order);
+//                JSONObject orderArray = new JSONObject();
                 String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
-                dialog.setDialog(input, this);
+                dialog.setDialog(order, input, this);
                 dialog.show(getFragmentManager(),"StartWarning");
                 return true;
             }
