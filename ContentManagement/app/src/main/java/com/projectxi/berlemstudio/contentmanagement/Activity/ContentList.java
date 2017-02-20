@@ -44,7 +44,7 @@ public class ContentList extends AppCompatActivity {
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        this.verifyStoragePermissions();
+//        this.verifyStoragePermissions();
 
         setContentView(R.layout.activity_content_list);
 
