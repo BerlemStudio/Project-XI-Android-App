@@ -34,4 +34,7 @@
 
     <!--story card-->
     <string name="creator_story_card">ผู้เขียน: </string>
+
+    <!--order form-->
+    <string name="scene_order_card">scene: </string>
 </resources>

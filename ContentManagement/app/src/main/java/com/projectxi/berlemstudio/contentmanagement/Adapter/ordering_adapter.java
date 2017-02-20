@@ -23,9 +23,11 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView name;
+        public TextView scene;
         public ViewHolder(View v) {
             super(v);
             name = (TextView) v.findViewById(R.id.name_ordering_card);
+            scene = (TextView) v.findViewById(R.id.scene_name_ordering_card);
         }
     }
 
@@ -53,6 +55,7 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
     public void onBindViewHolder(final ordering_adapter.ViewHolder holder, final int position) {
 
         holder.name.setText(this.orderData.get(position).getName());
+        holder.scene.setText(this.orderData.get(position).getScene());
     }
 
     @Override
