@@ -31,6 +31,9 @@ public class Story {
     public void setScene(String[] scene){
         this.scene = scene;
     }
+    public long getId(){
+        return this.id;
+    }
     public void setName(String name){
         this.name = name;
     }

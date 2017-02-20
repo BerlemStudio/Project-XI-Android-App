@@ -46,6 +46,9 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             public void onClick(View v) {
                 Intent intent = new Intent(context, StorySceneListActivity.class);
                 String[] scene = dataset[position].getScene();
+                Long id = dataset[position].getId();
+                String stringId = id.toString();
+                intent.putExtra("id", stringId);
                 intent.putExtra("scene", scene);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

@@ -21,6 +21,7 @@ import com.projectxi.berlemstudio.contentmanagement.Adapter.MyAdapter;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
+import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
 import org.json.JSONArray;
@@ -38,14 +39,20 @@ public class StorySceneListActivity extends AppCompatActivity {
     private MyAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private String[] sceneList;
+    private String id;
+    private DbHelper myHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        String[] sceneList;
         sceneList = intent.getStringArrayExtra("scene");
+        id = intent.getStringExtra("id");
+
+        // Call objecr DB
+        myHelper = new DbHelper(this);
 
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -60,6 +67,7 @@ public class StorySceneListActivity extends AppCompatActivity {
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
 
         ArrayList myDataset = null;
         try {
@@ -92,6 +100,11 @@ public class StorySceneListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case android.R.id.home:{
+                this.finish();
+                return true;
+            }
+            case R.id.deleteStory:{
+                this.myHelper.delete(id);
                 this.finish();
                 return true;
             }

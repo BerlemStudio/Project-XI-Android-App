@@ -39,7 +39,6 @@ public class StoryListActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         myHelper = new DbHelper(this);
-//        stories = myHelper.getStoryNameList();
         stories = myHelper.getStoryList();
 
         // set Recycle view
@@ -63,7 +62,16 @@ public class StoryListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle("เลือกเรื่องที่ต้องการ");
     }
+    @Override
+    public void onResume(){
+        stories = myHelper.getStoryList();
+        Story[] arr = new Story[stories.size()];
+        arr = stories.toArray(arr);
+        this.mAdapter = new StoryAdapter( arr, this.context );
+        mRecyclerView.setAdapter(mAdapter);
 
+        super.onResume();
+    }
     // Create Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

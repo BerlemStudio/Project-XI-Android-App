@@ -12,6 +12,7 @@
     <string name="action_order">จัดลำดับ</string>
     <string name="action_next">ต่อไป</string>
     <string name="action_save">บันทึก</string>
+    <string name="action_delete">ลบ</string>
 
     <!--label String-->
     <string name="primarySchool">ประถม</string>
