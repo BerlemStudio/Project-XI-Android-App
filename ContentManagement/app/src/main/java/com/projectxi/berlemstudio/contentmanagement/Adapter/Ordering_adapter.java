@@ -16,7 +16,7 @@ import java.util.Collections;
  * Created by patawat on 2/4/2017 AD.
  */
 
-public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.ViewHolder> implements ItemTouchHelperAdapter{
+public class Ordering_adapter extends RecyclerView.Adapter<Ordering_adapter.ViewHolder> implements ItemTouchHelperAdapter, StartingAdapter{
 
     private ArrayList<Scene> orderData;
 
@@ -37,22 +37,22 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
         notifyItemRemoved(position);
     }
 
-    public ordering_adapter(ArrayList<Scene> data){
+    public Ordering_adapter(ArrayList<Scene> data){
         this.orderData =  data;
     }
     @Override
-    public ordering_adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public Ordering_adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                               int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.ordering_card, parent, false);
 
-        ordering_adapter.ViewHolder vh = new ordering_adapter.ViewHolder(v);
+        Ordering_adapter.ViewHolder vh = new Ordering_adapter.ViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(final ordering_adapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final Ordering_adapter.ViewHolder holder, final int position) {
 
         holder.name.setText(this.orderData.get(position).getName());
         holder.scene.setText(this.orderData.get(position).getScene());
@@ -66,7 +66,6 @@ public class ordering_adapter extends RecyclerView.Adapter<ordering_adapter.View
     public ArrayList getList(){
         return this.orderData;
     }
-
 
     @Override
     public void onItemMove(int FromPosition, int ToPosition){

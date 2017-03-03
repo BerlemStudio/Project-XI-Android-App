@@ -18,9 +18,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.projectxi.berlemstudio.contentmanagement.Adapter.MyAdapter;
-import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
+import com.projectxi.berlemstudio.contentmanagement.Adapter.StartingAdapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
-import com.projectxi.berlemstudio.contentmanagement.dialog.startDialog;
+import com.projectxi.berlemstudio.contentmanagement.StartPlaying;
 import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
@@ -109,24 +109,8 @@ public class StorySceneListActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.start:{
-                startDialog dialog = new startDialog();
-                ArrayList<Scene> list = mAdapter.getList();
-
-                String[] arrayOrder = new String[list.size()];
-                for (int i = 0; i < list.size() ; i++){
-                    arrayOrder[i] = "\""+list.get(i).getScene()+"\"";
-                }
-                String[] order = new String[list.size()];
-                for (int i = 0; i < list.size() ; i++){
-                    order[i] = list.get(i).getScene();
-                }
-
-//                    JSONObject orderArray = new JSONObject();
-                    String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
-                    dialog.setDialog(order, input, this);
-                    dialog.show(getFragmentManager(),"StartWarning");
-                    return true;
-
+                StartPlaying.start(mAdapter,this);
+                return true;
             }
             default: return super.onOptionsItemSelected(item);
         }
@@ -166,39 +150,6 @@ public class StorySceneListActivity extends AppCompatActivity {
 
         return list;
     }
-//    public String loadJSONFromAsset(){
-//        String json = null;
-//        try {
-//            InputStream is = getAssets().open("content.json");
-//            int size = is.available();
-//            byte[] buffer = new byte[size];
-//            is.read(buffer);
-//            is.close();
-//            json = new String(buffer, "UTF-8");
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            return null;
-//        }
-//        return json;
-//    }
-//
-//    public ArrayList getJSON() throws JSONException {
-//        JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
-//        JSONArray array = jsonObj.getJSONArray("content");
-//        ArrayList<Scene> list = new ArrayList<>();
-//
-//        for (int count = 0 ; count < array.length() ; count++){
-//            JSONObject obj = array.getJSONObject(count);
-//            String name = obj.getString("name");
-//            String des = obj.getString("des");
-//            String Img_path = obj.getString("img_path");
-//            String scene = obj.getString("scene");
-//
-//            Scene test= new Scene(name, des, Img_path, scene);
-//            list.add(test);
-//        }
-//        return list;
-//    }
 
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);

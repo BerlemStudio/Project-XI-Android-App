@@ -17,7 +17,7 @@ import java.util.Collections;
  * Created by patawat on 1/11/2017 AD.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>implements StartingAdapter {
     private ArrayList<Scene> mDataset;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

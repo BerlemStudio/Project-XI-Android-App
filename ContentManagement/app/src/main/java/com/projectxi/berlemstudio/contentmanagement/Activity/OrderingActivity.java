@@ -18,7 +18,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.projectxi.berlemstudio.contentmanagement.Adapter.ordering_adapter;
+import com.projectxi.berlemstudio.contentmanagement.Adapter.Ordering_adapter;
+import com.projectxi.berlemstudio.contentmanagement.StartPlaying;
 import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.ItemTouchHelperCallback;
 import com.projectxi.berlemstudio.contentmanagement.R;
@@ -35,7 +36,7 @@ import java.util.Arrays;
 public class OrderingActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private ordering_adapter mAdapter;
+    private Ordering_adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private DbHelper myHelper;
@@ -69,7 +70,7 @@ public class OrderingActivity extends AppCompatActivity {
         ArrayList<Scene> myDataset;
         try {
             myDataset = (ArrayList<Scene>) intent.getSerializableExtra("selectedList");
-            this.mAdapter = new ordering_adapter( myDataset );
+            this.mAdapter = new Ordering_adapter( myDataset );
             ItemTouchHelper.Callback callback =
                     new ItemTouchHelperCallback(this.mAdapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
@@ -111,22 +112,7 @@ public class OrderingActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.start:{
-                startDialog dialog = new startDialog();
-                ArrayList<Scene> list = mAdapter.getList();
-
-                String[] arrayOrder = new String[list.size()];
-                for (int i = 0; i < list.size() ; i++){
-                    arrayOrder[i] = "\""+list.get(i).getScene()+"\"";
-                }
-                String[] order = new String[list.size()];
-                for (int i = 0; i < list.size() ; i++){
-                    order[i] = list.get(i).getScene();
-                }
-//                saveLastStart("การเล่นครั้งล่าสุด", "เนื้อหาที่ใช้เขาดูครั้งล่าสุด", "Auto save", order);
-//                JSONObject orderArray = new JSONObject();
-                String input = "{"+"\"orderArray\""+":"+Arrays.toString(arrayOrder)+"}";
-                dialog.setDialog(order, input, this);
-                dialog.show(getFragmentManager(),"StartWarning");
+                StartPlaying.start(mAdapter,this);
                 return true;
             }
             default: return super.onOptionsItemSelected(item);
