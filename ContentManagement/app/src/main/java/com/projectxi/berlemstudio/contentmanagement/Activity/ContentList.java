@@ -69,7 +69,7 @@ public class ContentList extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        this.mAdapter = new content_list_adapter( myDataset );
+        this.mAdapter = new content_list_adapter( myDataset, this );
         mRecyclerView.setAdapter(mAdapter);
     }
 

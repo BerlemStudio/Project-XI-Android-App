@@ -24,6 +24,7 @@
     <!--view card in content list-->
     <string name="button_select">เลือก</string>
     <string name="button_selected">ยกเลิก</string>
+    <string name="button_detail">รายละเอียด</string>
 
     <!--Create Story form-->
     <string name="form_name">ชื่อเรื่อง</string>

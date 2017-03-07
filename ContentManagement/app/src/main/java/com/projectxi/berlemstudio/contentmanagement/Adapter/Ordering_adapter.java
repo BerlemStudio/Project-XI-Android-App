@@ -67,6 +67,7 @@ public class Ordering_adapter extends RecyclerView.Adapter<Ordering_adapter.View
         return this.orderData;
     }
 
+
     @Override
     public void onItemMove(int FromPosition, int ToPosition){
         Collections.swap(this.orderData, FromPosition, ToPosition);
