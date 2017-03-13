@@ -16,7 +16,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,6 +27,8 @@
         <activity android:name=".Activity.StoryListActivity" />
         <activity android:name=".Activity.CreateStoryActivity" />
         <activity android:name=".Activity.SceneInfoActivity"></activity>
+        <uses-permisstion android:name="android.permission.Internet"/>
+        <uses-permisstion android:name="android.permission.ACCESS_NETWORK_STATE"/>
     </application>
 
 </manifest>

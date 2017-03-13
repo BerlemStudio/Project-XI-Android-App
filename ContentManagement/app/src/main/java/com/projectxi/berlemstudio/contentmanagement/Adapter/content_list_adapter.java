@@ -73,6 +73,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
         holder.detailButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(context, SceneInfoActivity.class);
+                intent.putExtra("sceneData", mDataset.get(position));
                 context.startActivity(intent);
             }
         });

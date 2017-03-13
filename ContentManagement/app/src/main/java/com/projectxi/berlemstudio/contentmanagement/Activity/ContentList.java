@@ -131,8 +131,8 @@ public class ContentList extends AppCompatActivity {
             String Img_path = obj.getString("img_path");
             String scene = obj.getString("scene");
 
-            Scene test= new Scene(name, des, Img_path, scene);
-            list.add(test);
+            Scene sceneObj= new Scene(name, des, Img_path, scene);
+            list.add(sceneObj);
         }
         return list;
     }
