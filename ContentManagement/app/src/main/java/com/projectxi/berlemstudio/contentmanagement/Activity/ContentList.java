@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class ContentList extends AppCompatActivity {
@@ -43,8 +44,6 @@ public class ContentList extends AppCompatActivity {
 
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-//        this.verifyStoragePermissions();
 
         setContentView(R.layout.activity_content_list);
 
@@ -106,7 +105,7 @@ public class ContentList extends AppCompatActivity {
     public String loadJSONFromAsset(){
         String json = null;
         try {
-            InputStream is = getAssets().open("content.json");
+            InputStream is = getAssets().open("sceneInfo.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -121,20 +120,22 @@ public class ContentList extends AppCompatActivity {
 
     public ArrayList getJSON() throws JSONException {
         JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
-        JSONArray array = jsonObj.getJSONArray("content");
+        Iterator keys = jsonObj.keys();
         ArrayList<Scene> list = new ArrayList<>();
 
-        for (int count = 0 ; count < array.length() ; count++){
-            JSONObject obj = array.getJSONObject(count);
+        while(keys.hasNext()) {
+            String key = (String) keys.next();
+            JSONObject obj = jsonObj.getJSONObject(key);
+
             String name = obj.getString("name");
             String des = obj.getString("des");
             String Img_path = obj.getString("img_path");
             String scene = obj.getString("scene");
-
-            Scene sceneObj= new Scene(name, des, Img_path, scene);
-            list.add(sceneObj);
+            Scene test= new Scene(name, des, Img_path, scene);
+            list.add(test);
         }
         return list;
+
     }
 
     public void verifyStoragePermissions(){

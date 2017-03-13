@@ -38,4 +38,7 @@
 
     <!--order form-->
     <string name="scene_order_card">scene: </string>
+
+    <!--ToolBar-->
+    <string name="add_icon">add</string>
 </resources>
