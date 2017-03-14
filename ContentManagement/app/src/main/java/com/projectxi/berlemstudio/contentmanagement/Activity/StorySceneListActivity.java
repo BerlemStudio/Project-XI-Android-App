@@ -76,7 +76,7 @@ public class StorySceneListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        this.mAdapter = new MyAdapter( myDataset );
+        this.mAdapter = new MyAdapter( myDataset, this );
         mRecyclerView.setAdapter(mAdapter);
 
         this.createToolbar();
@@ -143,8 +143,8 @@ public class StorySceneListActivity extends AppCompatActivity {
             String des = obj.getString("des");
             String Img_path = obj.getString("img_path");
             String scene = obj.getString("scene");
-
-            Scene test= new Scene(name, des, Img_path, scene);
+            String tag = obj.getString("tag");
+            Scene test= new Scene(name, des, Img_path, scene, tag);
             list.add(test);
         }
 
