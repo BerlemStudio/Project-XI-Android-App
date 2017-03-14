@@ -11,13 +11,20 @@ public class Scene implements Serializable{
     private String des;
     private String img_path;
     private String scene;
+    private String tag;
     public Scene(String name, String des, String img_path, String scene){
         this.name = name;
         this.des = des;
         this.img_path = img_path;
         this.scene = scene;
     }
-
+    public Scene(String name, String des, String img_path, String scene, String tag){
+        this.name = name;
+        this.des = des;
+        this.img_path = img_path;
+        this.scene = scene;
+        this.tag = tag;
+    }
     public String getName(){
         return this.name;
     }
@@ -28,6 +35,7 @@ public class Scene implements Serializable{
         return this.img_path;
     }
     public String getScene(){ return this.scene;}
+    public String getTag(){ return this.tag; }
     public void setName(String name){
         this.name = name;
     }

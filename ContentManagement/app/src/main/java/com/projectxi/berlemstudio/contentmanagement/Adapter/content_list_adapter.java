@@ -33,7 +33,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
         public TextView name;
         public TextView des;
         public ImageButton select;
-        public Button detailButton;
+        public TextView tag;
         public Boolean selection;
 
         public ViewHolder(View v) {
@@ -43,6 +43,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
             name = (TextView)v.findViewById(R.id.name);
             des = (TextView)v.findViewById(R.id.des);
             select = (ImageButton)v.findViewById(R.id.select);
+            tag = (TextView) v.findViewById(R.id.tag);
 //            detailButton = (Button)v.findViewById(R.id.detailbutton);
             this.selection = false;
         }
@@ -76,6 +77,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
                 context.startActivity(intent);
             }
         });
+        holder.tag.setText(mDataset.get(position).getTag());
         holder.ImageView.setImageResource(id);
         holder.name.setText(mDataset.get(position).getName());
 //        holder.des.setText(mDataset.get(position).getDes());
