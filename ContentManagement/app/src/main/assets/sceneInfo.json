@@ -2,6 +2,7 @@
   "jupiter_scene":
     {
       "name": "ดาวพฤหัสบดี",
+      "nameEng": "Jupiter",
       "scene": "jupiter_scene",
       "des": "ดาวพฤหัสบดี เป็นดาวที่มีส่วนประกอบ เป็นแก๊สและของเหลว โดยมีมีขนาดใหญ่ที่สุดระบบสุริยะจักรวาล",
       "img_path": "jupiter",
@@ -10,6 +11,7 @@
   "saturn_scene":
     {
       "name": "ดาวเสาร์",
+      "nameEng": "Saturn",
       "scene": "saturn_scene",
       "des": "ดาวเสาร์ ดาวเคราะห์ลำดับที่ 6 ของระบบสุริยะ และเป็นดาวที่มีขนาดใหญ่ที่สุดเป็นลำดับที่ 2 รองจากดาวพฤหัส ดาวเสาร์มีวงแหวนขนาดใหญ่ล้อมรอบดาวอยู่",
       "img_path": "saturn",
@@ -18,6 +20,7 @@
   "planet_introduction_scene":
     {
       "name": "ขนาดของดาวเคราะห์",
+      "nameEng": "Solar System",
       "scene": "planet_introduction_scene",
       "des": "ศึกษาขนาดของดาวเคราะห์ต่างๆในระบบสุริยะ มาดูกันว่าโลกของเราใหญ่แค่ไหนกัน เมื่อเทียบกับดาวเคราะห์ดวงอื่นๆู่",
       "img_path": "planet_introduction_scene",

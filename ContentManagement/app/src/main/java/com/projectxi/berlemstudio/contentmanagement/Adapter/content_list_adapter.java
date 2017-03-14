@@ -28,6 +28,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        public View view;
         public android.widget.ImageView ImageView;
         public TextView name;
         public TextView des;
@@ -37,11 +38,12 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
 
         public ViewHolder(View v) {
             super(v);
+            this.view = v;
             ImageView = (ImageView)v.findViewById(R.id.image);
             name = (TextView)v.findViewById(R.id.name);
             des = (TextView)v.findViewById(R.id.des);
             select = (ImageButton)v.findViewById(R.id.select);
-            detailButton = (Button)v.findViewById(R.id.detailbutton);
+//            detailButton = (Button)v.findViewById(R.id.detailbutton);
             this.selection = false;
         }
     }
@@ -67,28 +69,35 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
     public void onBindViewHolder(final content_list_adapter.ViewHolder holder, final int position) {
         final Context Imagecontext = holder.ImageView.getContext();
         int id = Imagecontext.getResources().getIdentifier(mDataset.get(position).getImg_path(),"drawable", context.getPackageName());
-        holder.ImageView.setImageResource(id);
-        holder.name.setText(mDataset.get(position).getName());
-        holder.des.setText(mDataset.get(position).getDes());
-        holder.detailButton.setOnClickListener(new View.OnClickListener(){
+        holder.view.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(context, SceneInfoActivity.class);
                 intent.putExtra("sceneData", mDataset.get(position));
                 context.startActivity(intent);
             }
         });
-        holder.select.setImageResource(R.drawable.ic_check_box_outline_blank_black_24dp);
+        holder.ImageView.setImageResource(id);
+        holder.name.setText(mDataset.get(position).getName());
+//        holder.des.setText(mDataset.get(position).getDes());
+//        holder.detailButton.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                Intent intent = new Intent(context, SceneInfoActivity.class);
+//                intent.putExtra("sceneData", mDataset.get(position));
+//                context.startActivity(intent);
+//            }
+//        });
+//        holder.select.setImageResource(R.drawable.ic_add_circle_white_24px);
         holder.select.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!holder.selection){
                     holder.selection = true;
                     String button = context.getString(R.string.button_selected);
-                    holder.select.setImageResource(R.drawable.ic_check_box_black_24dp);
+                    holder.select.setImageResource(R.drawable.ic_check_circle_white_24px);
                     selectedList.add(mDataset.get(position));
                 }else {
                     holder.selection = false;
                     String button = context.getString(R.string.button_select);
-                    holder.select.setImageResource(R.drawable.ic_check_box_outline_blank_black_24dp);
+                    holder.select.setImageResource(R.drawable.ic_add_circle_white_24px);
                     selectedList.remove(mDataset.get(position));
                 }
             }
