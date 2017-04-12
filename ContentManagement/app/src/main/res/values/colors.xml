@@ -30,4 +30,8 @@
     <color name="third">#0088ff</color>
     <color name="fourth">#879eb1</color>
     <color name="fifth">#f4ae01</color>
+
+    <!--alpha-->
+    <color name="fourthAlpha">#80879eb1</color>
+
 </resources>

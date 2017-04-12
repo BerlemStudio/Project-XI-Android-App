@@ -12,10 +12,20 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.content_list_adapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.dialog.nextDialog;
@@ -34,6 +44,7 @@ import java.util.Iterator;
 public class ContentList extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
+    private TextView testText;
     private content_list_adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -42,6 +53,8 @@ public class ContentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        this.testText = (TextView) findViewById(R.id.input_text);
+//        this.testText.setText("test");
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -63,8 +76,9 @@ public class ContentList extends AppCompatActivity {
 
         ArrayList myDataset = null;
         try {
-            myDataset = getJSON();
-        } catch (JSONException e) {
+            myDataset = query();
+//            myDataset = getJSON();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -145,6 +159,46 @@ public class ContentList extends AppCompatActivity {
         if(permistion!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
+    }
+
+    public ArrayList query(){
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com/api/scene";
+        final ArrayList<Scene> list = new ArrayList<>();
+
+        // Request a string response from the provided URL.
+
+        final JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("ContentResponse", response.toString());
+                for(int i=0; i<response.length() ;i++){
+                    JSONObject obj = null;
+                    try {
+                        obj = response.getJSONObject(i);
+                        String name = obj.getString("name");
+                        String des = obj.getString("descrisption");
+                        String Img_path = obj.getString("image_path");
+                        String scene = obj.getString("scene_name");
+                        String tag = "test";
+                        Scene test= new Scene(name, des, Img_path, scene, tag);
+                        list.add(test);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("ContentResponse", "onResponseERROR: "+error.toString());
+            }
+        });
+        queue.add(stringRequest);
+        return list;
     }
 
 }

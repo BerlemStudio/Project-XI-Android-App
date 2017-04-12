@@ -20,6 +20,7 @@
     <!--main menu button-->
     <string name="button_quick">Quick Start</string>
     <string name="button_normal">Normal Start</string>
+    <string name="button_unlock">Unlock</string>
 
     <!--view card in content list-->
     <string name="button_select">เลือก</string>
@@ -41,4 +42,11 @@
 
     <!--ToolBar-->
     <string name="add_icon">add</string>
+
+    <!--Login-->
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="registration">Registration</string>
+
 </resources>
