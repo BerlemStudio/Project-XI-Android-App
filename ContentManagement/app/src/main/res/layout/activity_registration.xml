@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg"
+    tools:context="com.projectxi.berlemstudio.contentmanagement.RegistrationActivity">
+
+    <LinearLayout
+        android:layout_width="344dp"
+        android:layout_height="551dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerInside"
+                android:layout_margin="30dp"
+                android:src="@drawable/spacetour" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:weightSum="3"
+            android:layout_margin="15dp"
+            android:background="@color/CardDialog"
+            android:alpha="0.6">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryText"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:text="@string/registration"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:focusable = "true"
+                    android:textColor="@color/primary"
+                    android:background="@color/fourthAlpha"
+                    android:text="Username"
+                    android:hint = "Enter Username"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:focusable = "true"
+                    android:textColor="@color/primary"
+                    android:background="@color/fourthAlpha"
+                    android:text="Password"
+                    android:hint = "Enter Password"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/confirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:focusable = "true"
+                    android:textColor="@color/primary"
+                    android:background="@color/fourthAlpha"
+                    android:text="Username"
+                    android:hint = "Enter Username"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:focusable = "true"
+                    android:textColor="@color/primary"
+                    android:background="@color/fourthAlpha"
+                    android:text="E-Mail"
+                    android:hint = "Enter Username"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/third"
+                android:text="@string/submit_button"/>
+            <Button
+                android:id="@+id/registration"
+                android:background="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/cancle"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -30,10 +30,8 @@
         <activity android:name=".Activity.StoryListActivity" />
         <activity android:name=".Activity.CreateStoryActivity" />
         <activity android:name=".Activity.SceneInfoActivity" />
-
-
-
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegistrationActivity"></activity>
     </application>
 
 </manifest>
