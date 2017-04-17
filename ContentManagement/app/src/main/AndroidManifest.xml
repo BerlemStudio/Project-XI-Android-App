@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
         <activity android:name=".Activity.StoryListActivity" />
         <activity android:name=".Activity.CreateStoryActivity" />
         <activity android:name=".Activity.SceneInfoActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".RegistrationActivity"></activity>
     </application>
 
