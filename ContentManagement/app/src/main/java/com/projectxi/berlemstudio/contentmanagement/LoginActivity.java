@@ -1,17 +1,23 @@
 package com.projectxi.berlemstudio.contentmanagement;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.projectxi.berlemstudio.contentmanagement.Activity.MainActivity;
 
 import org.json.JSONArray;
@@ -40,22 +46,25 @@ public class LoginActivity extends AppCompatActivity {
 
         mContext = this;
 
-        login.setOnClickListener(new View.OnClickListener(){
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 checklogin();
             }
         });
 
-        registration.setOnClickListener(new View.OnClickListener(){
+        registration.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(mContext, RegistrationActivity.class);
                 startActivity(intent);
             }
         });
     }
-    private void checklogin(){
+
+    private void checklogin() {
+
+        RequestQueue queue = Volley.newRequestQueue(this);
 
         String username = this.username.getText().toString().trim().toLowerCase();
         String password = this.password.getText().toString().trim();
@@ -67,26 +76,41 @@ public class LoginActivity extends AppCompatActivity {
         params.put("client_id", config.client_id);
         params.put("client_secret", config.client_secret);
         params.put("grant_type", config.grant_type);
+//        getPreferences(Context.MODE_PRIVATE);
 
-        JSONObject json = new JSONObject(params);
-        try {
-            JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, "url", new JSONArray(json),
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            System.out.println("response -->> " + response.toString());
-                            Intent intent = new Intent(mContext, MainActivity.class);
-                            startActivity(intent);
+        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String access_token = response.getString("access_token");
+                            String token_type = response.getString("token_type");
+
+                            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("access_token", access_token);
+                            editor.putString("token_type", token_type);
+
+                            editor.commit();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            System.out.println("change Pass response -->> " + error.toString());
-                        }
-                    });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                        Log.d("Test", "onResponse: test");
+                        Intent intent = new Intent(mContext, MainActivity.class);
+                        startActivity(intent);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("change Pass response -->> " + error.toString());
+                    }
+                }
+        );
+        queue.add(request);
+
     }
+
+
 }

@@ -81,7 +81,6 @@
                     android:focusable = "true"
                     android:textColor="@color/primary"
                     android:background="@color/fourthAlpha"
-                    android:text="Password"
                     android:hint = "Enter Password"
                     android:layout_margin="5dp"
                     android:padding="5dp"
@@ -99,8 +98,7 @@
                     android:focusable = "true"
                     android:textColor="@color/primary"
                     android:background="@color/fourthAlpha"
-                    android:text="Username"
-                    android:hint = "Enter Username"
+                    android:hint = "Enter Password"
                     android:layout_margin="5dp"
                     android:padding="5dp"
                     />
@@ -117,22 +115,21 @@
                     android:focusable = "true"
                     android:textColor="@color/primary"
                     android:background="@color/fourthAlpha"
-                    android:text="E-Mail"
-                    android:hint = "Enter Username"
+                    android:hint = "Enter E-mail"
                     android:layout_margin="5dp"
                     android:padding="5dp"
                     />
             </FrameLayout>
 
             <Button
-                android:id="@+id/login"
+                android:id="@+id/submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@color/third"
                 android:text="@string/submit_button"/>
             <Button
-                android:id="@+id/registration"
+                android:id="@+id/cancle"
                 android:background="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -75,7 +75,6 @@ public class StoryListActivity extends AppCompatActivity {
     // Create Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        Log.d("Toolbar in storylist","test");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.story_bar, menu);
         return true;

@@ -48,11 +48,13 @@
     <string name="password">password</string>
     <string name="login">Login</string>
     <string name="registration">Registration</string>
-
+    <string name="access_token">access_token</string>
+    <string name="token_type">token_type</string>
     <!--Registration-->
     <string name="rePassword">repassword</string>
     <string name="email">E-Mail</string>
     <string name="submit_button">Submit</string>
     <string name="cancle">Cancle</string>
+
 
 </resources>
