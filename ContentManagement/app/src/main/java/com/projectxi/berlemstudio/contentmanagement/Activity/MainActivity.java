@@ -1,5 +1,7 @@
 package com.projectxi.berlemstudio.contentmanagement.Activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 
 
 

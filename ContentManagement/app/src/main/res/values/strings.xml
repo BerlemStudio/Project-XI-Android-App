@@ -56,5 +56,6 @@
     <string name="submit_button">Submit</string>
     <string name="cancle">Cancle</string>
 
-
+    <!--share preference-->
+    <string name="preference_login">session</string>
 </resources>

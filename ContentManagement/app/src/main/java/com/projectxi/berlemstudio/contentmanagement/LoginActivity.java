@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         params.put("client_secret", config.client_secret);
         params.put("grant_type", config.grant_type);
 //        getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
 
         final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -86,19 +87,20 @@ public class LoginActivity extends AppCompatActivity {
                             String access_token = response.getString("access_token");
                             String token_type = response.getString("token_type");
 
-                            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                            Log.d("login", "onResponse: "+token_type+access_token);
                             SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("access_token", access_token);
-                            editor.putString("token_type", token_type);
-
+                            editor.putString(getString(R.string.access_token), access_token);
                             editor.commit();
+                            editor.putString(getString(R.string.token_type), token_type);
+                            editor.commit();
+
+                            Intent intent = new Intent(mContext, MainActivity.class);
+                            startActivity(intent);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Log.d("Test", "onResponse: test");
-                        Intent intent = new Intent(mContext, MainActivity.class);
-                        startActivity(intent);
+
                     }
                 },
                 new Response.ErrorListener() {
