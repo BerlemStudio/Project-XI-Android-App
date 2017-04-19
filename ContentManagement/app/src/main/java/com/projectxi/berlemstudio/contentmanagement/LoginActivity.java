@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         params.put("client_id", config.client_id);
         params.put("client_secret", config.client_secret);
         params.put("grant_type", config.grant_type);
-//        getPreferences(Context.MODE_PRIVATE);
+
         final SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
 
         final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),

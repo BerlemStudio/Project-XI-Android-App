@@ -174,9 +174,7 @@ public class ContentList extends AppCompatActivity {
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
         final String access_token = sharedPref.getString(getString(R.string.access_token),"");
-//        final String access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE3ZGFhMjQ0OTk5OGI0ZGVkZWExYTMwNDA3MWZjYzI0MzA3MDYxZWFiZjkzODI1ZDJlZDgzYTk4OTRmODE5YmU1N2UwZGIxMDQ0NGNkZmE5In0.eyJhdWQiOiIyIiwianRpIjoiYTdkYWEyNDQ5OTk4YjRkZWRlYTFhMzA0MDcxZmNjMjQzMDcwNjFlYWJmOTM4MjVkMmVkODNhOTg5NGY4MTliZTU3ZTBkYjEwNDQ0Y2RmYTkiLCJpYXQiOjE0OTI0NTQ2MTEsIm5iZiI6MTQ5MjQ1NDYxMSwiZXhwIjoxNDkzNzUwNjExLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cye8vSYTjCpF0ecQak1VTtJSZYkwTnNAfwOnQFM5qEXNFJznmSx5K5R17WCl6DMSDYjtHu5KLyprR07b9JpQVT9bxIi_iUR-jvQMYH-QmbyvUpIt5fm7recq0Ji5kFTjyCLUbR4kopTm6tdWtIJcxrT92TV9JCjewxFxR3bHlFNemwxb3S_D1QdVccE5pi3sH8Cp_MtJu_T2GKB_XbZoq_Y95g8Gg3mn2S-tjeJoZVTjmAd7N-YZn3y3R2DbTSHDQgKL3pC-Jl3KLW2N2ssugHdSGNqXxPq1s8Uhzfj5qHPYO-_ObeRTC7SuKZcnLpRIe2c38u2i9aYWWALS2r7u1g5IPv1jXOO7kc2trDbyE5-PWjPdfvE6DyUfmF2rHYf7rV3TBIXcpri-r8jeHpWGYfNZJEqfJnIyagjZBqGZWih4d9ijN0PvgTW4rj2rWeRu95TS3ivujn7JshJmA6HHddGMzUuwOJ6eocvLg91h4IE-tcs4RVUunVxhUNU8jRGI5qzsApUY_NVqvt9w58gI2hqoEglk2BnyDVNz71JG3KDYDnihbCBxu_YsOw5ATPScCEAJvtzFkZT-ff8j8vcvjAqj7SGPBP5lCebOoiZF-xnHPvrD4KJgZ1zBSLE78IFMUBxjlBgHr6RuL9ZdGQrIMqrMhHNY6xa6v13jqIjshQw";
         final String token_type = sharedPref.getString(getString(R.string.token_type),"");
-//        final String token_type = "Bearer";
 
         Log.d("auth", "getHeaders: "+ token_type+" "+access_token);
         // Request a string response from the provided URL.
@@ -184,7 +182,7 @@ public class ContentList extends AppCompatActivity {
         final JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("ContentResponse", response.toString());
+//                Log.d("ContentResponse", response.toString());
                 for(int i=0; i<response.length() ;i++){
                     JSONObject obj = null;
                     try {
@@ -201,6 +199,7 @@ public class ContentList extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                Log.d("list", "onResponse: "+list.toString());
             }
 
         }, new Response.ErrorListener() {
