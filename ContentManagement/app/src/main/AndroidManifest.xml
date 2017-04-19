@@ -31,7 +31,7 @@
         <activity android:name=".Activity.CreateStoryActivity" />
         <activity android:name=".Activity.SceneInfoActivity" />
         <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".RegistrationActivity"/>
     </application>
 
 </manifest>
