@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -109,6 +110,10 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progress.dismiss();
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(mContext, error.toString(), duration);
+                        toast.show();
                         System.out.println("change Pass response -->> " + error.toString());
                     }
                 }

@@ -76,14 +76,18 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/secondary"
+                android:background="#2b9977"
+                android:textColor="@color/primaryText"
+                android:elevation="10dp"
                 android:text="Login"/>
             <Button
                 android:id="@+id/registration"
-                android:background="@color/fifth"
+                android:background="#d23574"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textColor="@color/primaryText"
+                android:shadowRadius="2dp"
                 android:text="Registration"/>
         </LinearLayout>
 
