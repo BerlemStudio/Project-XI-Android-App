@@ -110,7 +110,9 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
     public int getItemCount() {
         return mDataset.size();
     }
-
+    public void onChangeList(ArrayList s){
+        this.mDataset = s;
+    }
     public ArrayList getList(){
         return this.mDataset;
     }

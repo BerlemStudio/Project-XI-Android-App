@@ -1,6 +1,7 @@
 package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,8 +27,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
+
 import com.android.volley.toolbox.Volley;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.content_list_adapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
@@ -53,6 +53,8 @@ public class ContentList extends AppCompatActivity {
     private content_list_adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private ArrayList<Scene> list;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,7 @@ public class ContentList extends AppCompatActivity {
 //        this.testText.setText("test");
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        progressdialog();
         setContentView(R.layout.activity_content_list);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
@@ -170,8 +172,8 @@ public class ContentList extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com/api/scene";
-        final ArrayList<Scene> list = new ArrayList<>();
-
+//        final ArrayList<Scene> list = new ArrayList<>();
+        this.list = new ArrayList<Scene>();
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
         final String access_token = sharedPref.getString(getString(R.string.access_token),"");
         final String token_type = sharedPref.getString(getString(R.string.token_type),"");
@@ -182,7 +184,7 @@ public class ContentList extends AppCompatActivity {
         final JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-//                Log.d("ContentResponse", response.toString());
+                Log.d("ContentResponse", response.toString());
                 for(int i=0; i<response.length() ;i++){
                     JSONObject obj = null;
                     try {
@@ -194,7 +196,8 @@ public class ContentList extends AppCompatActivity {
                         String tag = "test";
                         Scene test= new Scene(name, des, Img_path, scene, tag);
                         list.add(test);
-
+                        mAdapter.onChangeList(list);
+                        progress.dismiss();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -222,5 +225,10 @@ public class ContentList extends AppCompatActivity {
         queue.add(stringRequest);
         return list;
     }
-
+    private void progressdialog(){
+        this.progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
+    }
 }

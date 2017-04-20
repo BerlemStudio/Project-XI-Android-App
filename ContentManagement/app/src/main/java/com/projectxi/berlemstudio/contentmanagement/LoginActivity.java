@@ -1,6 +1,7 @@
 package com.projectxi.berlemstudio.contentmanagement;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login;
     private Button registration;
     private Context mContext;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressdialog();
                 checklogin();
             }
         });
@@ -93,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.commit();
                             editor.putString(getString(R.string.token_type), token_type);
                             editor.commit();
-
+                            progress.dismiss();
                             Intent intent = new Intent(mContext, MainActivity.class);
                             startActivity(intent);
 
@@ -111,7 +114,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
         queue.add(request);
+    }
 
+    private void progressdialog(){
+        this.progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
     }
 
 
