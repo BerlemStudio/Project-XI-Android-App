@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="4"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
     android:background="@drawable/mainbg"
-    android:orientation="vertical" >
+    android:weightSum="4"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:background="@drawable/mainbg"
+        android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +32,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:scaleType="centerInside"
-            android:layout_margin="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:src="@drawable/spacetour" />
     </LinearLayout>
     <LinearLayout
@@ -29,7 +42,7 @@
         android:layout_weight="2"
         android:orientation="vertical"
         android:weightSum="3"
-        android:layout_margin="50dp">
+        android:layout_margin="20dp">
 
             <Button
                 android:layout_width="match_parent"
@@ -39,8 +52,8 @@
                 android:background="@drawable/menubutton"
                 android:textColor="@color/primaryText"
                 android:id="@+id/button"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
 
@@ -53,8 +66,8 @@
                 android:onClick="onClickNormalStart"
                 android:textColor="@color/primaryText"
                 android:background="@drawable/menubutton"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 />
@@ -66,12 +79,19 @@
                 android:text="@string/button_unlock"
                 android:textColor="@color/primaryText"
                 android:background="@drawable/menubutton"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:onClick="onClickUnlock"
                 />
     </LinearLayout>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/navList"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="#ffeeeeee"/>
+    </android.support.v4.widget.DrawerLayout>
 
-
-</LinearLayout>
