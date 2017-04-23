@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.projectxi.berlemstudio.contentmanagement.Activity.SceneInfoActivity;
@@ -35,6 +36,7 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
         public ImageButton select;
         public TextView tag;
         public Boolean selection;
+        public RelativeLayout card;
 
         public ViewHolder(View v) {
             super(v);
@@ -44,6 +46,8 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
             des = (TextView)v.findViewById(R.id.des);
             select = (ImageButton)v.findViewById(R.id.select);
             tag = (TextView) v.findViewById(R.id.tag);
+//            card = (RelativeLayout) v.findViewById(R.id.content_card_view);
+
 //            detailButton = (Button)v.findViewById(R.id.detailbutton);
             this.selection = false;
         }

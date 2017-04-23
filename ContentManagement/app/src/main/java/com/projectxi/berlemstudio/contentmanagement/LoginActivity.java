@@ -1,6 +1,5 @@
 package com.projectxi.berlemstudio.contentmanagement;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,12 +16,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.projectxi.berlemstudio.contentmanagement.Activity.MainActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressdialog();
+                progressDialog();
                 checklogin();
             }
         });
@@ -121,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void progressdialog(){
+    private void progressDialog(){
         this.progress = new ProgressDialog(this);
         progress.setTitle("Loading");
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog

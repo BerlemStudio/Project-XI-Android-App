@@ -60,8 +60,6 @@ public class ContentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        this.testText = (TextView) findViewById(R.id.input_text);
-//        this.testText.setText("test");
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         progressdialog();
@@ -84,11 +82,11 @@ public class ContentList extends AppCompatActivity {
         ArrayList myDataset = null;
         try {
             myDataset = query();
+            //Load data by read json
 //            myDataset = getJSON();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         this.mAdapter = new content_list_adapter( myDataset, this );
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -172,7 +170,6 @@ public class ContentList extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com/api/scene";
-//        final ArrayList<Scene> list = new ArrayList<>();
         this.list = new ArrayList<Scene>();
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
         final String access_token = sharedPref.getString(getString(R.string.access_token),"");
@@ -196,7 +193,7 @@ public class ContentList extends AppCompatActivity {
                         String tag = "test";
                         Scene test= new Scene(name, des, Img_path, scene, tag);
                         list.add(test);
-                        mAdapter.onChangeList(list);
+                        mAdapter.notifyDataSetChanged();
                         progress.dismiss();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -204,10 +201,10 @@ public class ContentList extends AppCompatActivity {
                 }
                 Log.d("list", "onResponse: "+list.toString());
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progress.dismiss();
                 Log.d("ContentResponse", "onResponseERROR: "+error.toString());
             }
         }){
