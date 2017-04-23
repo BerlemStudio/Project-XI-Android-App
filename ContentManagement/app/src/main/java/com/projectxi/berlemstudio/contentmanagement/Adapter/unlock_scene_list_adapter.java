@@ -1,7 +1,9 @@
 package com.projectxi.berlemstudio.contentmanagement.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,10 @@ import android.widget.TextView;
 
 import com.projectxi.berlemstudio.contentmanagement.Activity.SceneInfoActivity;
 import com.projectxi.berlemstudio.contentmanagement.R;
+import com.projectxi.berlemstudio.contentmanagement.dialog.nextDialog;
+import com.projectxi.berlemstudio.contentmanagement.dialog.unlockDialog;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
+import com.projectxi.berlemstudio.contentmanagement.res.Scene_unlock;
 
 import java.util.ArrayList;
 
@@ -22,8 +27,8 @@ import java.util.ArrayList;
  */
 
 public class unlock_scene_list_adapter extends RecyclerView.Adapter<unlock_scene_list_adapter.ViewHolder> {
-    private ArrayList<Scene> mDataset;
-    private ArrayList<Scene> selectedList;
+    private ArrayList<Scene_unlock> mDataset;
+    private ArrayList<Scene_unlock> selectedList;
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -45,8 +50,6 @@ public class unlock_scene_list_adapter extends RecyclerView.Adapter<unlock_scene
             des = (TextView)v.findViewById(R.id.des);
             select = (ImageButton)v.findViewById(R.id.select);
             tag = (TextView) v.findViewById(R.id.tag);
-
-//            detailButton = (Button)v.findViewById(R.id.detailbutton);
             this.selection = false;
         }
     }
@@ -54,7 +57,7 @@ public class unlock_scene_list_adapter extends RecyclerView.Adapter<unlock_scene
     public unlock_scene_list_adapter(ArrayList s, Context context) {
         mDataset = s;
         this.context = context;
-        this.selectedList = new ArrayList<Scene>();
+        this.selectedList = new ArrayList<Scene_unlock>();
     }
 
     @Override
@@ -82,18 +85,22 @@ public class unlock_scene_list_adapter extends RecyclerView.Adapter<unlock_scene
         holder.tag.setText(mDataset.get(position).getTag());
         holder.ImageView.setImageResource(id);
         holder.name.setText(mDataset.get(position).getName());
+        if (!mDataset.get(position).getUnlock()){
+            holder.select.setImageResource(R.drawable.ic_lock_black_24dp);
+        }
+        else{
+            holder.select.setImageResource(R.drawable.ic_lock_open_black_24dp);
+        }
+
         holder.select.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (!holder.selection){
-                    holder.selection = true;
-                    String button = context.getString(R.string.button_selected);
-                    holder.select.setImageResource(R.drawable.ic_check_circle_white_24px);
-                    selectedList.add(mDataset.get(position));
+                if (!mDataset.get(position).getUnlock()){
+                    unlockDialog dialog = new unlockDialog();
+                    android.app.FragmentManager manager = ((Activity) context).getFragmentManager();
+                    dialog.show(manager, "unlock warning");
+
+
                 }else {
-                    holder.selection = false;
-                    String button = context.getString(R.string.button_select);
-                    holder.select.setImageResource(R.drawable.ic_add_circle_white_24px);
-                    selectedList.remove(mDataset.get(position));
                 }
             }
         });

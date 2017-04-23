@@ -17,7 +17,6 @@ public class nextDialog extends DialogFragment {
         builder.setMessage("คณยังไม่เลือกเนื้อหา")
                 .setPositiveButton("กลับ", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // FIRE ZE MISSILES!
                     }
                 });
         // Create the AlertDialog object and return it

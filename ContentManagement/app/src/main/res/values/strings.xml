@@ -58,4 +58,10 @@
 
     <!--share preference-->
     <string name="preference_login">session</string>
+
+    <!--Dialog-->
+    <string name="confirm_unlock">ยืนยัน</string>
+    <string name="cancle_dialog">ยกเลิก</string>
+    <string name="confirm_message">ยืนยันการปลดล็อคฉาก</string>
+
 </resources>
