@@ -40,13 +40,13 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(StoryAdapter.ViewHolder holder, final int position){
         holder.mTextView.setText(dataset[position].getName());
-        holder.creatorTextView.setText(dataset[position].getCreated_by());
+//        holder.creatorTextView.setText(dataset[position].getCreated_by());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, StorySceneListActivity.class);
                 String[] scene = dataset[position].getScene();
-                Long id = dataset[position].getId();
+                String id = dataset[position].getId();
                 String stringId = id.toString();
                 intent.putExtra("id", stringId);
                 intent.putExtra("scene", scene);
@@ -68,7 +68,6 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.name_story_card);
-            creatorTextView = (TextView) v.findViewById(R.id.creator_name_story_card);
         }
     }
 

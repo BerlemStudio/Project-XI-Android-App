@@ -1,7 +1,10 @@
 package com.projectxi.berlemstudio.contentmanagement.Activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -17,12 +20,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.MyAdapter;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.StartingAdapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.StartPlaying;
+import com.projectxi.berlemstudio.contentmanagement.config;
 import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
+import com.projectxi.berlemstudio.contentmanagement.res.Story;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +44,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StorySceneListActivity extends AppCompatActivity {
 
@@ -42,7 +56,8 @@ public class StorySceneListActivity extends AppCompatActivity {
     private String[] sceneList;
     private String id;
     private DbHelper myHelper;
-
+    private ProgressDialog progress;
+    private ArrayList<Scene> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +65,7 @@ public class StorySceneListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         sceneList = intent.getStringArrayExtra("scene");
         id = intent.getStringExtra("id");
-
+        progressdialog();
         // Call objecr DB
         myHelper = new DbHelper(this);
 
@@ -71,8 +86,9 @@ public class StorySceneListActivity extends AppCompatActivity {
 
         ArrayList myDataset = null;
         try {
-            myDataset = getJSON(sceneList);
-        } catch (JSONException e) {
+//            myDataset = getJSON(sceneList);
+            myDataset = getList(sceneList);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -158,5 +174,70 @@ public class StorySceneListActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},this.REQUEST_EXTERNAL_STORAGE);
         }
     }
+
+    private ArrayList getList(String[] sceneList){
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        this.list = new ArrayList<>();
+
+        for (int index = 0 ;index<sceneList.length;index++){
+            String url = config.url+"/api/scene/"+sceneList[index];
+            SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
+            final String access_token = sharedPref.getString(getString(R.string.access_token),"");
+            final String token_type = sharedPref.getString(getString(R.string.token_type),"");
+            final JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    Log.d("ContentResponse", response.toString());
+                    for(int i=0; i<response.length() ;i++){
+                        JSONObject objResponse = null;
+                        try {
+                            objResponse = response.getJSONObject(i);
+                            String id = objResponse.getString("id");
+                            String name = objResponse.getString("name");
+                            String des = objResponse.getString("descrisption");
+                            String Img_path = objResponse.getString("image_path");
+                            String scene = objResponse.getString("scene_name");
+                            String tag = "test";
+                            Scene newscene= new Scene(name, des, Img_path, scene, tag);
+                            list.add(newscene);
+                            mAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    progress.dismiss();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    progress.dismiss();
+                    Log.d("ContentResponse", "onResponseERROR: "+error.toString());
+                }
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+                    Map<String, String>  params = new HashMap<>();
+                    params.put("Authorization", token_type+" "+access_token);
+                    params.put("Content-Type", "application/json");
+                    params.put("Accept", "application/json");
+
+                    return params;
+                }
+            };
+            queue.add(stringRequest);
+        }
+        return list;
+
+    }
+
+    private void progressdialog(){
+        this.progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
+    }
+
 
 }

@@ -7,13 +7,13 @@ import java.util.ArrayList;
  */
 
 public class Story {
-    public long id;
+    public String id;
     public String name;
     public String des;
     public String created_by;
     public String[] scene;
 
-    public Story(long id, String name, String des, String created_by, String[] scene){
+    public Story(String id, String name, String des, String created_by, String[] scene){
         this.name = name;
         this.des = des;
         this.id = id;
@@ -31,7 +31,7 @@ public class Story {
     public void setScene(String[] scene){
         this.scene = scene;
     }
-    public long getId(){
+    public String getId(){
         return this.id;
     }
     public void setName(String name){
