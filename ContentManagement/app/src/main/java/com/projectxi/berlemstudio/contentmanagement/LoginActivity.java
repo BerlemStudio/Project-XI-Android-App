@@ -61,6 +61,14 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
+
+        final String access_token = sharedPref.getString(getString(R.string.access_token),"");
+        final String token_type = sharedPref.getString(getString(R.string.token_type),"");
+        if(access_token!=null&&token_type!=null){
+            Intent intent = new Intent(mContext, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void checklogin() {

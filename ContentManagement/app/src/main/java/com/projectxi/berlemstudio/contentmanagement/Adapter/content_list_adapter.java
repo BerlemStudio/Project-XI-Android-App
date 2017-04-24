@@ -84,15 +84,6 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
         holder.tag.setText(mDataset.get(position).getTag());
         holder.ImageView.setImageResource(id);
         holder.name.setText(mDataset.get(position).getName());
-//        holder.des.setText(mDataset.get(position).getDes());
-//        holder.detailButton.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v){
-//                Intent intent = new Intent(context, SceneInfoActivity.class);
-//                intent.putExtra("sceneData", mDataset.get(position));
-//                context.startActivity(intent);
-//            }
-//        });
-//        holder.select.setImageResource(R.drawable.ic_add_circle_white_24px);
         holder.select.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!holder.selection){
