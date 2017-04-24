@@ -103,11 +103,11 @@ public class OrderingActivity extends AppCompatActivity {
                 ArrayList<Scene> list = mAdapter.getList();
                 String[] order = new String[list.size()];
                 for (int i = 0; i < list.size() ; i++){
-                    order[i] = list.get(i).getScene();
+                    order[i] = list.get(i).getId();
                 }
                 convertArrays convertor = new convertArrays();
                 String convert = convertor.convertArrayToString(order);
-                intent.putExtra("selectedList", convert);
+                intent.putExtra("selectedList", order);
                 startActivity(intent);
                 return true;
             }

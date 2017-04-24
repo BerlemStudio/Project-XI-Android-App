@@ -138,26 +138,26 @@ public class ContentList extends AppCompatActivity {
         return json;
     }
 
-    public ArrayList getJSON() throws JSONException {
-        JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
-        Iterator keys = jsonObj.keys();
-        ArrayList<Scene> list = new ArrayList<>();
-
-        while(keys.hasNext()) {
-            String key = (String) keys.next();
-            JSONObject obj = jsonObj.getJSONObject(key);
-
-            String name = obj.getString("name");
-            String des = obj.getString("des");
-            String Img_path = obj.getString("img_path");
-            String scene = obj.getString("scene");
-            String tag = obj.getString("tag");
-            Scene test= new Scene(name, des, Img_path, scene, tag);
-            list.add(test);
-        }
-        return list;
-
-    }
+//    public ArrayList getJSON() throws JSONException {
+//        JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
+//        Iterator keys = jsonObj.keys();
+//        ArrayList<Scene> list = new ArrayList<>();
+//
+//        while(keys.hasNext()) {
+//            String key = (String) keys.next();
+//            JSONObject obj = jsonObj.getJSONObject(key);
+//
+//            String name = obj.getString("name");
+//            String des = obj.getString("des");
+//            String Img_path = obj.getString("img_path");
+//            String scene = obj.getString("scene");
+//            String tag = obj.getString("tag");
+//            Scene test= new Scene(id, name, des, Img_path, scene, tag);
+//            list.add(test);
+//        }
+//        return list;
+//
+//    }
 
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -188,12 +188,13 @@ public class ContentList extends AppCompatActivity {
                     try {
                         objResponse = response.getJSONObject(i);
                         JSONObject obj = objResponse.getJSONObject("scene");
+                        String id = obj.getString("id");
                         String name = obj.getString("name");
                         String des = obj.getString("descrisption");
                         String Img_path = obj.getString("image_path");
                         String scene = obj.getString("scene_name");
                         String tag = "test";
-                        Scene test= new Scene(name, des, Img_path, scene, tag);
+                        Scene test= new Scene(id, name, des, Img_path, scene, tag);
                         list.add(test);
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
