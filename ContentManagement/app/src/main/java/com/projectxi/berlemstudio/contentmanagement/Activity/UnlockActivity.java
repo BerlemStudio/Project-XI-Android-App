@@ -122,7 +122,7 @@ public class UnlockActivity extends AppCompatActivity {
                             Log.d("unlock", "onResponse: True");
                             unlock = true;
                         }
-                        String tag = "test";
+                        String tag = obj.getString("tag");
                         Scene_unlock scene_unlock = new Scene_unlock(id, name, des, Img_path, scene, tag, unlock);
                         list.add(scene_unlock);
                         mAdapter.notifyDataSetChanged();

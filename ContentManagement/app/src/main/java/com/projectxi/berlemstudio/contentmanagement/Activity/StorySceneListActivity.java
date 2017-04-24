@@ -198,7 +198,7 @@ public class StorySceneListActivity extends AppCompatActivity {
                             String des = objResponse.getString("descrisption");
                             String Img_path = objResponse.getString("image_path");
                             String scene = objResponse.getString("scene_name");
-                            String tag = "test";
+                            String tag = objResponse.getString("tag");
                             Scene newscene= new Scene(name, des, Img_path, scene, tag);
                             list.add(newscene);
                             mAdapter.notifyDataSetChanged();

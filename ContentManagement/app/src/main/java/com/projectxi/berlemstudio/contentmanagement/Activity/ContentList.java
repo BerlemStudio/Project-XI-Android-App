@@ -193,7 +193,7 @@ public class ContentList extends AppCompatActivity {
                         String des = obj.getString("descrisption");
                         String Img_path = obj.getString("image_path");
                         String scene = obj.getString("scene_name");
-                        String tag = "test";
+                        String tag = obj.getString("tag");
                         Scene test= new Scene(id, name, des, Img_path, scene, tag);
                         list.add(test);
                         mAdapter.notifyDataSetChanged();
