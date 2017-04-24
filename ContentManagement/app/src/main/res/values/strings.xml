@@ -64,4 +64,6 @@
     <string name="cancle_dialog">ยกเลิก</string>
     <string name="confirm_message">ยืนยันการปลดล็อคฉาก</string>
 
+    <!--Main menu bar-->
+    <string name="logout">LogOut</string>
 </resources>

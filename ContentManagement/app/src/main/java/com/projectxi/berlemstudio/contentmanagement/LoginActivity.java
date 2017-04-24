@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final String access_token = sharedPref.getString(getString(R.string.access_token),"");
         final String token_type = sharedPref.getString(getString(R.string.token_type),"");
-        if(access_token!=null&&token_type!=null){
+        if(access_token!=null&&!access_token.equals("")&&token_type!=null&&!token_type.equals("")){
             Intent intent = new Intent(mContext, MainActivity.class);
             startActivity(intent);
         }

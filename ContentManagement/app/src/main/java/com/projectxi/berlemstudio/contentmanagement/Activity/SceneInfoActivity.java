@@ -67,9 +67,9 @@ public class SceneInfoActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             }
-            case R.id.add:{
-                return true;
-            }
+//            case R.id.add:{
+//                return true;
+//            }
             default: return super.onOptionsItemSelected(item);
         }
     }

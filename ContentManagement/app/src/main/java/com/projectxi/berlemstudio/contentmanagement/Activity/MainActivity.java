@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.projectxi.berlemstudio.contentmanagement.R;
@@ -28,22 +31,40 @@ public class MainActivity extends ActionBarActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        // set screen to portrait
-        String[] mPlanetTitles = {"Android", "iOS", "Windows", "OS X", "Linux" };
-//        mPlanetTitles = this.mPlanetTitles;
-//        this.mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        mDrawerList = (ListView) findViewById(R.id.navList);
-//        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.activity_main, mPlanetTitles));
-//        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-//        setSupportActionBar(myToolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.getBackground().setAlpha(0);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayShowTitleEnabled(false);
+        ab.setTitle("Welcome :");
+
+    }
+    // Create Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu_bar, menu);
+        return true;
     }
 
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+
+            case R.id.logout:{
+                SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.clear();
+                editor.commit();
+
+                this.finish();
+                return true;
+            }
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
     public void onClickQuickStart(View view){
         Intent intent = new Intent(this, StoryListActivity.class);
         startActivity(intent);
