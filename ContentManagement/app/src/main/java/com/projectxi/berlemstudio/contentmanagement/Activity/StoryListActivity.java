@@ -67,7 +67,7 @@ public class StoryListActivity extends AppCompatActivity {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        getStory();
+//        getStory();
 
 
         // set tool bar
@@ -87,11 +87,11 @@ public class StoryListActivity extends AppCompatActivity {
     }
     @Override
     public void onResume(){
-//        getStory();
-        Story[] arr = new Story[this.stories.size()];
-        arr = this.stories.toArray(arr);
-        this.mAdapter = new StoryAdapter( arr, this.context );
-        mRecyclerView.setAdapter(mAdapter);
+        getStory();
+//        Story[] arr = new Story[this.stories.size()];
+//        arr = this.stories.toArray(arr);
+//        this.mAdapter = new StoryAdapter( arr, this.context );
+//        mRecyclerView.setAdapter(mAdapter);
 
         super.onResume();
     }
@@ -144,13 +144,13 @@ public class StoryListActivity extends AppCompatActivity {
                         }
                         Story story = new Story(id, name, des, "", list);
                         stories.add(story);
-                        mAdapter.notifyDataSetChanged();
                         Log.d("story", "onResponse: "+stories.size());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
                 setAdapter();
+                mAdapter.notifyDataSetChanged();
                 progress.dismiss();
                 Log.d("list", "onResponse: "+stories.toString());
             }

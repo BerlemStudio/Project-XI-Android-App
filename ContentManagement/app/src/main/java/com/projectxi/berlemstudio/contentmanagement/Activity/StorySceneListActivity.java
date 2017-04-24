@@ -120,7 +120,9 @@ public class StorySceneListActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.deleteStory:{
-                this.myHelper.delete(id);
+                progressdialog();
+                this.deleteStory(id);
+//                this.myHelper.delete(id);
                 this.finish();
                 return true;
             }
@@ -231,7 +233,39 @@ public class StorySceneListActivity extends AppCompatActivity {
         return list;
 
     }
+    private void deleteStory(String id){
 
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = config.url+"/api/story/"+id;
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
+        final String access_token = sharedPref.getString(getString(R.string.access_token),"");
+        final String token_type = sharedPref.getString(getString(R.string.token_type),"");
+        final JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.DELETE, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("ContentResponse", response.toString());
+                progress.dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progress.dismiss();
+                Log.d("ContentResponse", "onResponseERROR: "+error.toString());
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                Map<String, String>  params = new HashMap<>();
+                params.put("Authorization", token_type+" "+access_token);
+                params.put("Content-Type", "application/json");
+                params.put("Accept", "application/json");
+
+                return params;
+            }
+        };
+        queue.add(stringRequest);
+    }
     private void progressdialog(){
         this.progress = new ProgressDialog(this);
         progress.setTitle("Loading");
