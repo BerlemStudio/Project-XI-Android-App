@@ -67,7 +67,6 @@ public class unlockDialog extends DialogFragment {
     }
     private void unlock(){
         String url = config.url+config.unlock;
-//        String url = "http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com/api/me/unlock";
         RequestQueue queue = Volley.newRequestQueue(context);
 
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);

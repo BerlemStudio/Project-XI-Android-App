@@ -92,4 +92,8 @@ public class StoryListActivity extends AppCompatActivity {
         }
     }
 
+    private void getStory(){
+
+    }
+
 }
