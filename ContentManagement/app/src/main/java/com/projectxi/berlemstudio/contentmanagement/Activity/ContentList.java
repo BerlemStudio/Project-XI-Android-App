@@ -31,6 +31,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.content_list_adapter;
 import com.projectxi.berlemstudio.contentmanagement.R;
+import com.projectxi.berlemstudio.contentmanagement.config;
 import com.projectxi.berlemstudio.contentmanagement.dialog.nextDialog;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
 
@@ -169,7 +170,7 @@ public class ContentList extends AppCompatActivity {
     public ArrayList query(){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com/api/scene";
+        String url = config.url+config.user_scene_list_unlock;
         this.list = new ArrayList<Scene>();
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
         final String access_token = sharedPref.getString(getString(R.string.access_token),"");
@@ -183,9 +184,10 @@ public class ContentList extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 Log.d("ContentResponse", response.toString());
                 for(int i=0; i<response.length() ;i++){
-                    JSONObject obj = null;
+                    JSONObject objResponse = null;
                     try {
-                        obj = response.getJSONObject(i);
+                        objResponse = response.getJSONObject(i);
+                        JSONObject obj = objResponse.getJSONObject("scene");
                         String name = obj.getString("name");
                         String des = obj.getString("descrisption");
                         String Img_path = obj.getString("image_path");

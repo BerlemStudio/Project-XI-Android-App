@@ -97,9 +97,10 @@ public class unlock_scene_list_adapter extends RecyclerView.Adapter<unlock_scene
                 if (!mDataset.get(position).getUnlock()){
                     unlockDialog dialog = new unlockDialog();
                     android.app.FragmentManager manager = ((Activity) context).getFragmentManager();
+                    dialog.setSceneID(mDataset.get(position).getId());
+                    dialog.setContext(context);
+                    dialog.setHolder(holder);
                     dialog.show(manager, "unlock warning");
-
-
                 }else {
                 }
             }

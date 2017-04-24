@@ -107,6 +107,7 @@ public class UnlockActivity extends AppCompatActivity {
 
                         objResponse = response.getJSONObject(i);
                         JSONObject obj = objResponse.getJSONObject("scene");
+                        String id = obj.getString("id");
                         String name = obj.getString("name");
                         String des = obj.getString("descrisption");
                         String Img_path = obj.getString("image_path");
@@ -121,7 +122,7 @@ public class UnlockActivity extends AppCompatActivity {
                             unlock = true;
                         }
                         String tag = "test";
-                        Scene_unlock scene_unlock = new Scene_unlock(name, des, Img_path, scene, tag, unlock);
+                        Scene_unlock scene_unlock = new Scene_unlock(id, name, des, Img_path, scene, tag, unlock);
                         list.add(scene_unlock);
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {

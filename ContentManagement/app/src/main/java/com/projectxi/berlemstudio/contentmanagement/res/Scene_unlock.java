@@ -6,8 +6,8 @@ package com.projectxi.berlemstudio.contentmanagement.res;
 
 public class Scene_unlock extends Scene {
     private boolean unlock;
-    public Scene_unlock(String name, String des, String img_path, String scene, String tag,boolean unlock){
-        super(name,des,img_path,scene,tag);
+    public Scene_unlock(String id, String name, String des, String img_path, String scene, String tag,boolean unlock){
+        super(id, name,des,img_path,scene,tag);
         this.unlock = unlock;
     }
     public boolean getUnlock(){

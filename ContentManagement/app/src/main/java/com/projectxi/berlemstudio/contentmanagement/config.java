@@ -5,8 +5,10 @@ package com.projectxi.berlemstudio.contentmanagement;
  */
 
 public class config {
-    public static String url = "";
+    public static String url = "http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com";
 
+    public static String user_scene_list_unlock = "/api/me/user_scene_list_unlock";
+    public static String unlock = "/api/me/unlock ";
     public static String login_url="";
 
     public static String registration_url="http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com/api/register";
