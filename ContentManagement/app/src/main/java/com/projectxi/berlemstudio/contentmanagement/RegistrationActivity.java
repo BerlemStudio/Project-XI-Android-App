@@ -98,6 +98,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             progress.dismiss();
+
                             setToast("Register Fail");
                         }
                     }

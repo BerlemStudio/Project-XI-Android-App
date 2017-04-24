@@ -196,11 +196,11 @@ public class ContentList extends AppCompatActivity {
                         Scene test= new Scene(name, des, Img_path, scene, tag);
                         list.add(test);
                         mAdapter.notifyDataSetChanged();
-                        progress.dismiss();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+                progress.dismiss();
                 Log.d("list", "onResponse: "+list.toString());
             }
         }, new Response.ErrorListener() {

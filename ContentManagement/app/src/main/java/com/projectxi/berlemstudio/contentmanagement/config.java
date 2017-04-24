@@ -21,7 +21,7 @@ public class config {
 
     public static String client_id="2";
 
-    public static String client_secret="7PidatO4r50AIC46Uu8G4hmPLe92ESMwFX7BwyFw";
+    public static String client_secret="WiKQ7ni8TrzyXik9I0vnejU7pZBb0w8pEGojQefi";
 
     public static String register = "http://ec2-54-169-97-8.ap-southeast-1.compute.amazonaws.com/api/register";
 
