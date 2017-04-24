@@ -54,7 +54,9 @@ public class CreateStoryActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("สร้างเนื้อเรื่องใหม่ ");
+        ab.setTitle(R.string.create_story_activity_name);
+//        ab.setTitle("สร้างเนื้อเรื่องใหม่ ");
+
 
         myHelper = new DbHelper(this);
         et_name = (EditText) findViewById(R.id.input_story_name);

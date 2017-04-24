@@ -17,6 +17,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.convertArrays;
 import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 
@@ -43,7 +44,7 @@ public class startDialog extends DialogFragment {
         Context context = getContext();
         myHelper = new DbHelper(context);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("คุณต้องการที่จะเริ่มหรือไม่").setPositiveButton("ใช่",new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.message_start).setPositiveButton(R.string.Yes,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 saveLastStart("การเล่นครั้งล่าสุด", "เนื้อหาที่ใช้เขาดูครั้งล่าสุด", "Auto save", order);
                 writeFile();
@@ -51,7 +52,7 @@ public class startDialog extends DialogFragment {
                 intent.setClassName("com.BerlemStudio.ProjectXI","com.unity3d.player.UnityPlayerActivity");
                 startActivity(intent);
             }
-        }).setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             }
         });

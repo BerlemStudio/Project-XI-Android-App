@@ -64,7 +64,8 @@ public class OrderingActivity extends AppCompatActivity {
 //        set action bar
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("ลำดับเนื้อเรื่อง");
+        ab.setTitle(R.string.Ordering_activity_name);
+//        ab.setTitle("ลำดับเนื้อเรื่อง");
 
         Intent intent = getIntent();
         ArrayList<Scene> myDataset;

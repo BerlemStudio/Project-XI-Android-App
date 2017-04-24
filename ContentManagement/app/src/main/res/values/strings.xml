@@ -7,12 +7,18 @@
     <string name="button_coming_soon">coming_soon</string>
 
     <!--Menu Nav string-->
-    <string name="action_swap">สลับ</string>
-    <string name="action_start">เริ่ม</string>
-    <string name="action_order">จัดลำดับ</string>
-    <string name="action_next">ต่อไป</string>
-    <string name="action_save">บันทึก</string>
-    <string name="action_delete">ลบ</string>
+    <!--<string name="action_swap">สลับ</string>-->
+    <!--<string name="action_start">เริ่ม</string>-->
+    <!--<string name="action_order">จัดลำดับ</string>-->
+    <!--<string name="action_next">ต่อไป</string>-->
+    <!--<string name="action_save">บันทึก</string>-->
+    <!--<string name="action_delete">ลบ</string>-->
+    <string name="action_swap">Swap</string>
+    <string name="action_start">Start</string>
+    <string name="action_order">Ordering</string>
+    <string name="action_next">Next</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
 
     <!--label String-->
     <string name="primarySchool">ประถม</string>
@@ -23,16 +29,26 @@
     <string name="button_unlock">Unlock</string>
 
     <!--view card in content list-->
-    <string name="button_select">เลือก</string>
-    <string name="button_selected">ยกเลิก</string>
-    <string name="button_detail">รายละเอียด</string>
+    <!--<string name="button_select">เลือก</string>-->
+    <!--<string name="button_selected">ยกเลิก</string>-->
+    <!--<string name="button_detail">รายละเอียด</string>-->
+    <string name="button_select">Select</string>
+    <string name="button_selected">Cancle</string>
+    <string name="button_detail">Detail</string>
 
     <!--Create Story form-->
-    <string name="form_name">ชื่อเรื่อง</string>
-    <string name="form_des">คำอธิบาย</string>
+    <!--<string name="form_name">ชื่อเรื่อง</string>-->
+    <!--<string name="form_des">คำอธิบาย</string>-->
+    <!--<string name="creator">ผู้เขียน</string>-->
+    <!--<string name="form_save">บันทึก</string>-->
+    <!--<string name="form_clear">ยกเลิก</string>-->
+    <string name="form_name">Story name</string>
+    <string name="form_des">Description</string>
     <string name="creator">ผู้เขียน</string>
-    <string name="form_save">บันทึก</string>
-    <string name="form_clear">ยกเลิก</string>
+    <string name="form_save">Submit</string>
+    <string name="form_clear">Cancle</string>
+    <string name="create_story_activity_name">Create new story</string>
+
 
     <!--story card-->
     <string name="creator_story_card">ผู้เขียน: </string>
@@ -60,10 +76,33 @@
     <string name="preference_login">session</string>
 
     <!--Dialog-->
-    <string name="confirm_unlock">ยืนยัน</string>
-    <string name="cancle_dialog">ยกเลิก</string>
-    <string name="confirm_message">ยืนยันการปลดล็อคฉาก</string>
-
+    <!--<string name="confirm_unlock">ยืนยัน</string>-->
+    <!--<string name="cancle_dialog">ยกเลิก</string>-->
+    <!--<string name="confirm_message">ยืนยันการปลดล็อคฉาก</string>-->
+    <string name="confirm_unlock">Confirm</string>
+    <string name="cancle_dialog">Cancle</string>
+    <string name="confirm_message">Confirmation for unlock scene</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="message_start">Do you want to start?</string>
+    <string name="massage_selected">Please, selected the scenes.</string>
+    <string name="back">Back</string>
     <!--Main menu bar-->
     <string name="logout">LogOut</string>
+
+    <!--Content list-->
+    <string name="content_activity_name">Scene lists</string>
+
+    <!--ordering-->
+    <string name="Ordering_activity_name">Ordering scenes</string>
+
+    <!--Unlock Activity-->
+    <string name="Unlock_name">Upgrade scene</string>
+
+    <!--Quick start-->
+    <string name="quick_start_name">Story list</string>
+
+
+
+
 </resources>

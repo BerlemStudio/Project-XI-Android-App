@@ -76,7 +76,7 @@ public class StoryListActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("เลือกเรื่องที่ต้องการ");
+        ab.setTitle(R.string.quick_start_name);
     }
     private void setAdapter(){
         Story[] arr = new Story[this.stories.size()];

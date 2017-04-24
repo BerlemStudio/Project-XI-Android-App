@@ -103,7 +103,7 @@ public class StorySceneListActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("เนื้อเรื่อง");
+        ab.setTitle(R.string.content_activity_name);
     }
     // Create Menu
     public boolean onCreateOptionsMenu(Menu menu){

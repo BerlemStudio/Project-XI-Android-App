@@ -78,7 +78,7 @@ public class ContentList extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("เนื้อเรื่อง");
+        ab.setTitle(R.string.content_activity_name);
 
         ArrayList myDataset = null;
         try {

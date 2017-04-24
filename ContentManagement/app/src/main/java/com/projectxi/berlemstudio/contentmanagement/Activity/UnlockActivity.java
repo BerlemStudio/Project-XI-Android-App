@@ -60,7 +60,8 @@ public class UnlockActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("ปลดล็อค");
+        ab.setTitle(R.string.Unlock_name);
+//        ab.setTitle("ปลดล็อค");
 
         progressdialog();
 
