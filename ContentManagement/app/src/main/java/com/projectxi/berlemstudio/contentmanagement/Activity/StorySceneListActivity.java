@@ -120,10 +120,12 @@ public class StorySceneListActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.deleteStory:{
-                progressdialog();
-                this.deleteStory(id);
+                if(!id.equals("0")){
+                    progressdialog();
+                    this.deleteStory(id);
+                    this.finish();
+                }
 //                this.myHelper.delete(id);
-                this.finish();
                 return true;
             }
             case R.id.start:{

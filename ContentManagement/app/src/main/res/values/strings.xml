@@ -74,7 +74,10 @@
 
     <!--share preference-->
     <string name="preference_login">session</string>
-
+    <string name="last_save">last_save</string>
+    <string name="story_name">story_name</string>
+    <string name="story_des">story_des</string>
+    <string name="story_scene">story_scene</string>
     <!--Dialog-->
     <!--<string name="confirm_unlock">ยืนยัน</string>-->
     <!--<string name="cancle_dialog">ยกเลิก</string>-->

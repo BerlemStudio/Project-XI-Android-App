@@ -28,12 +28,15 @@ public final class StartPlaying {
         }
 
         String[] order = new String[list.size()];
+        String[] idOrder = new String[list.size()];
+
         for (int i = 0; i < list.size() ; i++){
             order[i] = list.get(i).getScene();
+            idOrder[i] = list.get(i).getId();
         }
 
         String input = "{"+"\"orderArray\""+":"+ Arrays.toString(arrayOrder)+"}";
-        dialog.setDialog(order, input, activity);
+        dialog.setDialog(order,idOrder, input, activity);
         dialog.show(activity.getFragmentManager(),"StartWarning");
         return true;
     }

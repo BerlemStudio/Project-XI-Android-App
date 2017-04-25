@@ -24,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.projectxi.berlemstudio.contentmanagement.Adapter.StoryAdapter;
 import com.projectxi.berlemstudio.contentmanagement.config;
+import com.projectxi.berlemstudio.contentmanagement.convertArrays;
 import com.projectxi.berlemstudio.contentmanagement.model.DbHelper;
 import com.projectxi.berlemstudio.contentmanagement.R;
 import com.projectxi.berlemstudio.contentmanagement.res.Scene;
@@ -53,12 +54,15 @@ public class StoryListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_story_list);
 
         this.context = getApplicationContext();
+        this.stories = new ArrayList<Story>();
 
         // set screen to portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 //        myHelper = new DbHelper(this);
 //        stories = myHelper.getStoryList();
+        this.getLastSave();
+
         progressdialog();
         // set Recycle view
         setContentView(R.layout.activity_content_list);
@@ -68,7 +72,6 @@ public class StoryListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 //        getStory();
-
 
         // set tool bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -87,6 +90,8 @@ public class StoryListActivity extends AppCompatActivity {
     }
     @Override
     protected void onResume(){
+        this.stories.clear();
+        getLastSave();
         getStory();
 //        Story[] arr = new Story[this.stories.size()];
 //        arr = this.stories.toArray(arr);
@@ -119,7 +124,6 @@ public class StoryListActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = config.url+config.get_story;
-        this.stories = new ArrayList<Story>();
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_login), Context.MODE_PRIVATE);
         final String access_token = sharedPref.getString(getString(R.string.access_token),"");
         final String token_type = sharedPref.getString(getString(R.string.token_type),"");
@@ -179,6 +183,20 @@ public class StoryListActivity extends AppCompatActivity {
         progress.setTitle("Loading");
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
+    }
+
+    private void getLastSave(){
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.last_save), Context.MODE_PRIVATE);
+        String story_name = sharedPref.getString(getString(R.string.story_name),"");
+        String story_des = sharedPref.getString(getString(R.string.story_des),"");
+        String story_scene = sharedPref.getString(getString(R.string.story_scene),"");
+        convertArrays convertor = new convertArrays();
+        String[] scene = convertor.convertStringToArray(story_scene);
+        if (story_name.equals("")&&story_des.equals("")&&story_scene.equals("")){
+            return;
+        }
+        Story newStory = new Story("0", story_name, story_des, "auto_save", scene);
+        stories.add(newStory);
     }
 
 }

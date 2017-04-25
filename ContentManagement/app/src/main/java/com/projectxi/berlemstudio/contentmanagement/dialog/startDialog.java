@@ -8,6 +8,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,10 +35,12 @@ public class startDialog extends DialogFragment {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private DbHelper myHelper;
     private String[] order;
-    public void setDialog(String[] order, String text, Activity activity){
+    private String[] idOrder;
+    public void setDialog(String[] order, String[] idorder, String text, Activity activity){
         this.text = text;
         this.activity = activity;
         this.order = order;
+        this.idOrder = idorder;
     }
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -87,9 +90,19 @@ public class startDialog extends DialogFragment {
     // Save last ordering play list in database
     public void saveLastStart(String story,String des,String creator, String[] order){
         convertArrays convertor = new convertArrays();
-        String convert = convertor.convertArrayToString(order);
+        String convert = convertor.convertArrayToString(idOrder);
         myHelper.insertStory(story , des, creator, convert);
         Log.d("saveStory", "saveLastStart: True");
+
+        SharedPreferences sharedPref = getContext().getSharedPreferences(getString(R.string.last_save), Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.story_name), story);
+        editor.commit();
+        editor.putString(getString(R.string.story_des), des);
+        editor.commit();
+        editor.putString(getString(R.string.story_scene), convert);
+        editor.commit();
     }
 
     // Verify permissions because write SD storage
