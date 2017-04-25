@@ -62,7 +62,7 @@
                     android:focusable = "true"
                     android:textColor="@color/primary"
                     android:background="@color/fourthAlpha"
-                    android:hint = "Enter E-mail"
+                    android:hint = "Enter Username"
                     android:layout_margin="5dp"
                     android:padding="5dp"
                     />

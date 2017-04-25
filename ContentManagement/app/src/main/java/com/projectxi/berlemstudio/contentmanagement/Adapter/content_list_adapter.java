@@ -89,8 +89,20 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
         holder.ImageView.setImageResource(id);
         holder.name.setText(mDataset.get(position).getName());
         if (mDataset.get(position).getEng().equals("0")){
-            holder.mySwitch.setClickable(false);
+            holder.mySwitch.setEnabled(false);
         }
+        holder.mySwitch.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (holder.mySwitch.isChecked()){
+                            holder.mySwitch.setText("EN");
+                        }else {
+                            holder.mySwitch.setText("TH");
+
+                        }
+                    }
+                }
+        );
         holder.select.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!holder.selection){

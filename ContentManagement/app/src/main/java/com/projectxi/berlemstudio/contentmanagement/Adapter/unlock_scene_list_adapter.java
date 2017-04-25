@@ -65,7 +65,7 @@ public class unlock_scene_list_adapter extends RecyclerView.Adapter<unlock_scene
                                                               int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.content_card, parent, false);
+                .inflate(R.layout.unlock_scene_card, parent, false);
         // set the view's size, margins, paddings and layout parameters
         unlock_scene_list_adapter.ViewHolder vh = new unlock_scene_list_adapter.ViewHolder(v);
         return vh;

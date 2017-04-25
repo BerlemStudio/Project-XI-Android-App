@@ -82,8 +82,6 @@ public class ContentList extends AppCompatActivity {
         ArrayList myDataset = null;
         try {
             myDataset = query();
-            //Load data by read json
-//            myDataset = getJSON();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,27 +134,6 @@ public class ContentList extends AppCompatActivity {
         }
         return json;
     }
-
-//    public ArrayList getJSON() throws JSONException {
-//        JSONObject jsonObj = new JSONObject(loadJSONFromAsset());
-//        Iterator keys = jsonObj.keys();
-//        ArrayList<Scene> list = new ArrayList<>();
-//
-//        while(keys.hasNext()) {
-//            String key = (String) keys.next();
-//            JSONObject obj = jsonObj.getJSONObject(key);
-//
-//            String name = obj.getString("name");
-//            String des = obj.getString("des");
-//            String Img_path = obj.getString("img_path");
-//            String scene = obj.getString("scene");
-//            String tag = obj.getString("tag");
-//            Scene test= new Scene(id, name, des, Img_path, scene, tag);
-//            list.add(test);
-//        }
-//        return list;
-//
-//    }
 
     public void verifyStoragePermissions(){
         int permistion = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);

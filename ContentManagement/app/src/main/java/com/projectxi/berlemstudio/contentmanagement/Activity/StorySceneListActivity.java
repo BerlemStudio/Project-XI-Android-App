@@ -273,5 +273,9 @@ public class StorySceneListActivity extends AppCompatActivity {
         progress.show();
     }
 
+    protected void onDestroy(){
+        super.onDestroy();
+
+    }
 
 }

@@ -39,41 +39,59 @@
                 android:layout_below="@+id/image"
                 android:layout_margin="15dp"
                 android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryText"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/shape"
-                        android:gravity="center"
-                        />
-                </LinearLayout>
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <Switch
-                        android:id="@+id/mySwitch"
+                    >
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/languages"
-                        android:textColor="@color/primaryText"/>
+                        android:layout_marginTop="10dp"
 
-                </LinearLayout>
+                        >
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primaryText"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/shape"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:paddingBottom="1dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        >
+
+                        <Switch
+                            android:id="@+id/mySwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="5dp"
+                            android:text="TH"
+                            android:textColor="@color/primaryText"/>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
 
             </LinearLayout>
 
@@ -89,16 +107,6 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 
-
-            <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/button_select"-->
-            <!--android:layout_below="@+id/des"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_marginEnd="13dp"-->
-            <!--android:layout_marginBottom="5dp"-->
-            <!--android:id="@+id/select" />-->
         </RelativeLayout>
 
 

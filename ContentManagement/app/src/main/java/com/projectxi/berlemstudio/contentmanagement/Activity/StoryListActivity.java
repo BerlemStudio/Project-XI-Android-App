@@ -86,7 +86,7 @@ public class StoryListActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
     @Override
-    public void onResume(){
+    protected void onResume(){
         getStory();
 //        Story[] arr = new Story[this.stories.size()];
 //        arr = this.stories.toArray(arr);

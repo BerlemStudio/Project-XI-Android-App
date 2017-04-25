@@ -81,14 +81,14 @@
     <!--<string name="confirm_message">ยืนยันการปลดล็อคฉาก</string>-->
     <string name="confirm_unlock">Confirm</string>
     <string name="cancle_dialog">Cancle</string>
-    <string name="confirm_message">Confirmation for unlock scene</string>
+    <string name="confirm_message">Confirm to unlock scene</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="message_start">Do you want to start?</string>
     <string name="massage_selected">Please, selected the scenes.</string>
     <string name="back">Back</string>
     <!--Main menu bar-->
-    <string name="logout">LogOut</string>
+    <string name="logout">Log out</string>
 
     <!--Content list-->
     <string name="content_activity_name">Scene lists</string>
@@ -103,6 +103,6 @@
     <string name="quick_start_name">Story list</string>
 
     <!--Content card-->
-    <string name="languages">English</string>
+    <string name="languages">EN</string>
 
 </resources>
