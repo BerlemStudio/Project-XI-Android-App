@@ -102,7 +102,7 @@
     <!--Quick start-->
     <string name="quick_start_name">Story list</string>
 
-
-
+    <!--Content card-->
+    <string name="languages">English</string>
 
 </resources>

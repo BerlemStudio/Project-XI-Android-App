@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.projectxi.berlemstudio.contentmanagement.Activity.SceneInfoActivity;
@@ -31,12 +32,13 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
 
         public View view;
         public android.widget.ImageView ImageView;
-        public TextView name;
-        public TextView des;
-        public ImageButton select;
-        public TextView tag;
-        public Boolean selection;
-        public RelativeLayout card;
+        private TextView name;
+        private TextView des;
+        private ImageButton select;
+        private TextView tag;
+        private Boolean selection;
+        private RelativeLayout card;
+        private Switch mySwitch;
 
         public ViewHolder(View v) {
             super(v);
@@ -46,6 +48,8 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
             des = (TextView)v.findViewById(R.id.des);
             select = (ImageButton)v.findViewById(R.id.select);
             tag = (TextView) v.findViewById(R.id.tag);
+            mySwitch = (Switch) v.findViewById(R.id.mySwitch);
+
 //            card = (RelativeLayout) v.findViewById(R.id.content_card_view);
 
 //            detailButton = (Button)v.findViewById(R.id.detailbutton);
@@ -84,13 +88,24 @@ public class content_list_adapter extends RecyclerView.Adapter<content_list_adap
         holder.tag.setText(mDataset.get(position).getTag());
         holder.ImageView.setImageResource(id);
         holder.name.setText(mDataset.get(position).getName());
+        if (mDataset.get(position).getEng().equals("0")){
+            holder.mySwitch.setClickable(false);
+        }
         holder.select.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!holder.selection){
                     holder.selection = true;
                     String button = context.getString(R.string.button_selected);
                     holder.select.setImageResource(R.drawable.ic_check_circle_white_24px);
-                    selectedList.add(mDataset.get(position));
+                    if (holder.mySwitch.isChecked()){
+                        Scene currentscene = mDataset.get(position);
+                        String rescenename = currentscene.getScene()+"_en";
+                        Scene scene_en= new Scene(currentscene.getId(),currentscene.getName(),currentscene.getDes(),currentscene.getImg_path(),rescenename,currentscene.getTag());
+                        selectedList.add(scene_en);
+                    }
+                    else{
+                        selectedList.add(mDataset.get(position));
+                    }
                 }else {
                     holder.selection = false;
                     String button = context.getString(R.string.button_select);

@@ -43,7 +43,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 
@@ -194,7 +193,8 @@ public class ContentList extends AppCompatActivity {
                         String Img_path = obj.getString("image_path");
                         String scene = obj.getString("scene_name");
                         String tag = obj.getString("tag");
-                        Scene test= new Scene(id, name, des, Img_path, scene, tag);
+                        String eng = obj.getString("english");
+                        Scene test= new Scene(id, name, des, Img_path, scene, tag, eng);
                         list.add(test);
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {

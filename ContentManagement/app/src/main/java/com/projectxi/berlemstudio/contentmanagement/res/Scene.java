@@ -13,7 +13,9 @@ public class Scene implements Serializable{
     private String img_path;
     private String scene;
     private String tag;
+    private String eng;
     public Scene(String name, String des, String img_path, String scene, String tag){
+        this.id = "null";
         this.name = name;
         this.des = des;
         this.img_path = img_path;
@@ -27,6 +29,18 @@ public class Scene implements Serializable{
         this.img_path = img_path;
         this.scene = scene;
         this.tag = tag;
+    }
+    public Scene(String id, String name, String des, String img_path, String scene, String tag, String eng){
+        this.id = id;
+        this.name = name;
+        this.des = des;
+        this.img_path = img_path;
+        this.scene = scene;
+        this.tag = tag;
+        this.eng = eng;
+    }
+    public String getEng(){
+        return this.eng;
     }
     public String getId(){
         return this.id;
